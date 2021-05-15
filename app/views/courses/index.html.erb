@@ -1,11 +1,15 @@
+  <% if @courses.empty? %>
+ <p>'Nenhum curso disponível'</p>
+ <% end %>
+
+
 <tbody>
   <tr>
 <% @courses.each do |course|%>  
-  <td><%= course.name%></td>
+  <td><%= link_to course.name, course %></td>
     <td><%= course.description%></td>
-    <td><%= course.code%></td>
     <td><%= number_to_currency(course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></td>
-    <td><%= course.enrollment_deadline.strftime("%d/%m/%Y") %></td>
+        <%= link_to 'Voltar', root_path %>
   </tr>
   <% end %>
 </tbody>
