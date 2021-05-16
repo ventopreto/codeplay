@@ -35,6 +35,12 @@ end
   end
   end
 
+  def destroy
+    instructor = Instructor.find(params[:id])
+    instructor.destroy
+    redirect_to root_path
+  end
+
   private
   def instructor_params
     params.require(:instructor).permit(:name, :email, :bio)
