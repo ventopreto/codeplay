@@ -15,7 +15,7 @@ describe 'Admin update instructors' do
 
     fill_in 'Nome', with: 'Luiz Carlos'
     fill_in 'Email', with: 'luiz@gmail.com'
-    fill_in 'Biografia', with: 'lerolerolerolerolerolerolerolero'
+    fill_in 'Descrição', with: 'lerolerolerolerolerolerolerolero'
 
     click_on 'Cadastrar Professor'
 

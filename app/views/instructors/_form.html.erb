@@ -6,8 +6,10 @@
   <%= f.text_field :name %>
   <%= f.label :email, 'Email' %>
   <%= f.text_field :email %>
-  <%= f.label :bio, 'Biografia' %>
+  <%= f.label :bio, 'Descrição' %>
   <%= f.text_area :bio %>
+  <%= f.label :profile_picture, 'Foto de perfil' %>
+  <%= f.file_field :profile_picture %>
   <%= f.submit 'Cadastrar Professor' %>
   <%= link_to 'Voltar', root_path %>
 </p>
