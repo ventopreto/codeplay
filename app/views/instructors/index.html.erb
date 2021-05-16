@@ -2,7 +2,9 @@
 <p>Nenhum professor disponível</p>
 <% end %>
 
-<%= @instructors.each do |instructor| %>
+<% @instructors.each do |instructor| %>
 <h3><%= link_to instructor.name, instructor %></h3>
-<%= link_to 'Voltar', root_path %>
 <% end %>
+<br>
+<%= link_to 'Registrar um Professor', new_instructor_path %>
+<%= link_to 'Voltar', root_path %>

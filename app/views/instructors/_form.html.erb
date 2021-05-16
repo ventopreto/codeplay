@@ -1,0 +1,14 @@
+
+<%= form_with model: @instructor do |f| %>
+
+<p>
+  <%= f.label :name, 'Nome' %>
+  <%= f.text_field :name %>
+  <%= f.label :email, 'Email' %>
+  <%= f.text_field :email %>
+  <%= f.label :bio, 'Biografia' %>
+  <%= f.text_area :bio %>
+  <%= f.submit 'Cadastrar Professor' %>
+  <%= link_to 'Voltar', root_path %>
+</p>
+<% end %>

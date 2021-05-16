@@ -4,13 +4,15 @@ require 'rails_helper'
 
 describe 'Admin view instructors' do
   it 'successfully' do
-    Instructor.create!(name: 'Paulo')
-    Instructor.create!(name: 'Luiz')
+    Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
+                   bio: 'seilaksahkhashk')
+    Instructor.create!(name: 'Luiz', email: 'luiz@gmail.com',
+                   bio: 'pkfjghikdfkgh')
 
     visit root_path
     click_on 'Professores'
 
-    expect(page).to have_content('Paulo')
+    expect(page).to have_content('Julio')
     expect(page).to have_content('Luiz')
 
   end
