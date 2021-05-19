@@ -7,4 +7,25 @@ class CoursesController < ApplicationController
     @course = Course.find(params[:id])
   end
 
+  def new
+    @course = Course.new
+  end
+
+  def create
+    @course = Course.new(course_params)
+    if @course.save
+      redirect_to @course
+    else
+      flash[:alert] = 'Você deve informar todos os dados do curso'
+        render :new
+    end
+  end
+
+
+private
+
+def course_params
+  params.require(:course).permit(:name,:description,:code,:price,:enrollment_deadline)
+end
+
 end
