@@ -35,6 +35,13 @@ class CoursesController < ApplicationController
     end
   end
 
+  def destroy
+    @course = Course.find(params[:id])
+    if @course.destroy
+      flash[:alert] = 'Curso Excluido com sucesso'
+      redirect_to root_path
+    end
+  end
 
 private
 
