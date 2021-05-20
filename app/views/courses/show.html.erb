@@ -1,11 +1,16 @@
 
   
-  <tbody>
-  <tr>
-  <td><%= @course.name %></td>
-    <td><%= @course.description%></td>
-    <td><%= @course.code%></td>
-    <td><%= number_to_currency(@course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></td>
-    <td><%= @course.enrollment_deadline.strftime("%d/%m/%Y") %></td>
+  <dl>
+  <dt>Nome</dt>
+  <dd><%= @course.name %></dd>
+  <dt>Descrição</dt>
+    <dd><%= @course.description%></dd>
+    <dt>Código</dt>
+    <dd><%= @course.code%></dd>
+    <dt>Preço</dt>
+    <dd><%= number_to_currency(@course.price) %></dd>
+    <dt>Data limite de matrícula</dt>
+    <dd><%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></dd>
+</dl>
+    <%= link_to 'Editar', edit_course_path %>
     <%= link_to 'Voltar', courses_path %>
-</tbody>

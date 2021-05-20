@@ -4,10 +4,13 @@ require 'rails_helper'
 
 describe 'Admin view instructors' do
   it 'successfully' do
-    Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
-                   bio: 'seilaksahkhashk')
-    Instructor.create!(name: 'Luiz', email: 'luiz@gmail.com',
-                   bio: 'pkfjghikdfkgh')
+    Instructor.create!(name: 'Julio',
+                                email: 'julio@gmail.com',
+                                bio: 'seilaksahkhashk')
+    Instructor.create!(name: 'Luiz',
+                                email: 'luiz@gmail.com',
+                                bio: 'pkfjghikdfkgh')
+
 
     visit root_path
     click_on 'Professores'
@@ -18,14 +21,15 @@ describe 'Admin view instructors' do
   end
 
   it 'and view details' do
-    Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
-                   bio: 'seilaksahkhashk')
-    Instructor.create!(name: 'Luiz', email: 'luiz@gmail.com',
-                   bio: 'pkfjghikdfkgh')
+  Instructor.create!(name: 'Luiz',
+                              email: 'luiz@gmail.com',
+                              bio: 'pkfjghikdfkgh',
+                              profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor.png')))
 
     visit root_path
     click_on 'Professores'
     click_on 'Luiz'
+
 
     expect(page).to have_content('Luiz')
     expect(page).to have_content('luiz@gmail.com')

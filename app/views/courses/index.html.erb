@@ -2,16 +2,15 @@
  <p>'Nenhum curso disponível'</p>
  <% end %>
 
-
-<tbody>
-  <tr>
+  <dl>
 <% @courses.each do |course|%>  
-  <td><%= link_to course.name, course %></td>
-    <td><%= course.description%></td>
-    <td><%= number_to_currency(course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></td>
-        <%= link_to 'Voltar', root_path %>
-  </tr>
+  <dt>Nome</dt>
+  <dd><%= link_to course.name, course %></dd>
+  <dt>Descrição</dt>
+  <dd><%= course.description%></dd>
+  <dt>Preço</dt>
+  <dd><%= number_to_currency(course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></dd>
   <% end %>
-</tbody>
-
+  </dl>
       <%= link_to 'Registrar um Curso', new_course_path %>
+      <%= link_to 'Voltar', root_path %>

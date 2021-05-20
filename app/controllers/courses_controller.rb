@@ -21,6 +21,20 @@ class CoursesController < ApplicationController
     end
   end
 
+  def edit
+    @course = Course.find(params[:id])
+  end
+
+  def update
+    @course = Course.find(params[:id])
+    if @course.update(course_params)
+      redirect_to @course
+    else
+      flash[:alert] = 'Você deve informar todos os dados do curso'
+      render :edit
+    end
+  end
+
 
 private
 

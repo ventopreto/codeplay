@@ -12,7 +12,7 @@ class InstructorsController < ApplicationController
   end
 
   def create
-    @instructor = Instructor.create(instructor_params)
+    @instructor = Instructor.new(instructor_params)
    if @instructor.save
     redirect_to @instructor
   else  
