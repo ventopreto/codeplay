@@ -15,8 +15,12 @@ describe Course do
     end
 
     it 'code must be uniq' do
+      instructor = Instructor.create!(name: 'Fulano Sicrano',
+      email: 'fulano@codeplay.com.br')
+      
       Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                     code: 'RUBYBASIC', price: 10,
+                    instructor: instructor,
                     enrollment_deadline: '22/12/2033')
       course = Course.new(code: 'RUBYBASIC')
 

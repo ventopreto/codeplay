@@ -4,12 +4,17 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
+                   instructor:instructor,
                    enrollment_deadline: '22/12/2033')
     Course.create!(name: 'Ruby on Rails',
                    description: 'Um curso de Ruby on Rails',
                    code: 'RUBYONRAILS', price: 20,
+                   instructor:instructor,
                    enrollment_deadline: '20/12/2033')
 
     visit root_path
@@ -24,12 +29,17 @@ describe 'Admin view courses' do
   end
 
   it 'and view details' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
                    enrollment_deadline: '22/12/2033')
     Course.create!(name: 'Ruby on Rails',
                    description: 'Um curso de Ruby on Rails',
                    code: 'RUBYONRAILS', price: 20,
+                   instructor: instructor,
                    enrollment_deadline: '20/12/2033')
 
     visit root_path
@@ -37,6 +47,7 @@ describe 'Admin view courses' do
     click_on 'Ruby on Rails'
 
     expect(page).to have_content('Ruby on Rails')
+    expect(page).to have_content('Fulano Sicrano')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')
     expect(page).to have_content('R$ 20,00')
@@ -51,8 +62,12 @@ describe 'Admin view courses' do
   end
 
   it 'and return to home page' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
                    enrollment_deadline: '22/12/2033')
 
     visit root_path
@@ -63,8 +78,12 @@ describe 'Admin view courses' do
   end
 
   it 'and return to promotions page' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
     Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
                    code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
                    enrollment_deadline: '22/12/2033')
 
     visit root_path

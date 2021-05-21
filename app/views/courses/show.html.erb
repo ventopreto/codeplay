@@ -9,6 +9,8 @@
     <dd><%= @course.code%></dd>
     <dt>Preço</dt>
     <dd><%= number_to_currency(@course.price) %></dd>
+    <dt>Professor</dt>
+    <dd><%= @course.instructor.name %></dd>
     <dt>Data limite de matrícula</dt>
     <dd><%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></dd>
 </dl>
