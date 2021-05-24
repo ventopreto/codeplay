@@ -1,0 +1,10 @@
+<%= form_with model: [@course, lesson] do |f| %>
+    <%= f.label :name, 'Nome da Aula' %>
+    <%= f.text_field :name %>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_field :description %>
+    <%= f.submit %>
+<% end %>
+<%= link_to 'Voltar', course_path(course) %>
+
+
