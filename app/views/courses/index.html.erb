@@ -1,16 +1,18 @@
   <% if @courses.empty? %>
  <p>'Nenhum curso disponível'</p>
+ <%= link_to t('links.back'), courses_path, class:"btn btn-light btn-sm" %>
  <% end %>
 
-  <dl>
-<% @courses.each do |course|%>  
-  <dt>Nome</dt>
-  <dd><%= link_to course.name, course %></dd>
-  <dt>Descrição</dt>
-  <dd><%= course.description%></dd>
-  <dt>Preço</dt>
-  <dd><%= number_to_currency(course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></dd>
-  <% end %>
-  </dl>
-      <%= link_to 'Registrar um Curso', new_course_path, class:"btn btn-secondary btn-sm"  %>
-      <%= link_to 'Voltar', root_path, class:"btn btn-light btn-sm"  %>
+
+<% @courses.each do |course| %>
+<div class="card rounded-circle border border-dark" style="width: 18rem;">
+</div>
+  <div class="card-body">
+    <h5>Nome: <%= link_to course.name, course %> </h5>
+     <p class="card-text">Preço: <%= number_to_currency(course.price) %></p>
+    <p class="card-text">Descrição:  <%= course.description %> </p>
+
+  </div>
+<% end %>
+<%= link_to 'Registrar um Curso', new_course_path, class:"btn btn-success btn-sm" %>
+<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>

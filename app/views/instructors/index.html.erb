@@ -1,10 +1,19 @@
 <% if @instructors.empty?%>
 <p>Nenhum professor disponível</p>
+<%= link_to t('links.back'), instructors_path, class:"btn btn-light btn-sm" %>
 <% end %>
 
+
+
 <% @instructors.each do |instructor| %>
-<h3><%= link_to instructor.name, instructor %></h3>
+<div class="card rounded-circle border border-dark" style="width: 18rem;">
+  <% if instructor.profile_picture.attached? %>
+    <%= image_tag instructor.profile_picture, class:"rounded-circle" %> 
+  <% end %>
+</div>
+  <div class="card-body">
+    <h5> <%= link_to instructor.name, instructor %> </h5>
+  </div>
 <% end %>
-<br>
-<%= link_to 'Registrar um Professor', new_instructor_path, class:"btn btn-secondary btn-sm" %>
-<%= link_to 'Voltar', root_path, class:"btn btn-light btn-sm"%>
+<%= link_to 'Registrar um Professor', new_instructor_path, class:"btn btn-success btn-sm" %>
+<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>

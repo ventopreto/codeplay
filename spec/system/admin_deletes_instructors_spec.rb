@@ -9,7 +9,7 @@ describe 'Admin delete instructors' do
     visit root_path
     click_on 'Professores'
     click_on 'João'
-    expect {click_on 'Deletar'}.to change {Instructor.count}.by(-1)
+    expect {click_on 'Deletar Professor'}.to change {Instructor.count}.by(-1)
     expect(page).to have_content('Professor removido com sucesso')
   end
 end

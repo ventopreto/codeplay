@@ -1,10 +1,22 @@
+<div class="card mx-auto" style="width: 50rem;">
+  <div class="card-body">
 <%= form_with model: [@course, lesson] do |f| %>
-    <%= f.label :name, 'Nome da Aula' %>
-    <%= f.text_field :name %>
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_field :description %>
-    <%= f.submit button_text %>
+<div class="row g-2 ml-2">
+  <div class="col-md-6">
+    <%= f.label :name, 'Nome da Aula', class:"form-label" %>
+    <%= f.text_field :name, class:"form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= f.label :description, 'Descrição', class:"form-label" %>
+    <%= f.text_field :description, class:"form-control" %>
+  </div>
+  </div>
+  <div class="d-inline p-2"> 
+    <%= f.submit button_text, class:"btn btn-outline-dark btn-sm" %>
 <% end %>
-<%= link_to t('links.back'), course_path(course) %>
 
-
+<%= link_to t('links.back'), course_path(course), class:"btn btn-outline-dark btn-sm"%>
+ </div>
+  </div>
+</div>

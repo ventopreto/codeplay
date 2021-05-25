@@ -1,22 +1,15 @@
-
-  
-  <dl>
-  <dt>Nome</dt>
-  <dd><%= @course.name %></dd>
-  <dt>Descrição</dt>
-    <dd><%= @course.description%></dd>
-    <dt>Código</dt>
-    <dd><%= @course.code%></dd>
-    <dt>Preço</dt>
-    <dd><%= number_to_currency(@course.price) %></dd>
-    <dt>Professor</dt>
-    <dd><%= @course.instructor.name %></dd>
-    <dt>Data limite de matrícula</dt>
-    <dd><%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></dd>
-</dl>
-
-    <%= link_to 'Registrar Aula', new_course_lesson_path(@course, @lesson), class:"btn btn-dark"  %>
-    <%= link_to 'Ver Aulas', course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
-    <%= link_to 'Editar', edit_course_path, class:"btn btn-dark" %>
-    <%= link_to 'Deletar', course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'}, class:"btn btn-warning" %>
-    <%= link_to 'Voltar', courses_path, class:"btn btn-dark" %>
+<div class="card" style="width: 23rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nome: <%= @course.name %></h5>
+    <p class="card-text">Descrição:  <%= @course.description %> </p>
+    <p class="card-text">Codigo: <%= @course.code %></p>
+   <p class="card-text">Preço: <%= number_to_currency(@course.price) %></p>
+  <p class="card-text">Professor: <%= @course.instructor.name %></p>
+   <p class="card-text">Data limite de matrícula: <%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></p>
+    <%= link_to t('links.new_lesson'), new_course_lesson_path(@course, @lesson), class:"btn btn-success" %>
+    <%= link_to t('links.show_lesson'), course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
+    <%= link_to t('links.edit_course'), edit_course_path, class:"btn btn-warning" %>
+    <%= link_to t('links.destroy_course'), course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'}, class:"btn btn-danger" %>
+    <%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark"%>
+  </div>
+</div>

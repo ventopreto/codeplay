@@ -1,8 +1,10 @@
 pt-BR:
   links:
     back: Voltar
-    edit: Editar
-    destroy: Deletar
+    edit_lesson: Editar
+    destroy_lesson: Deletar Aula
+    new_lesson: Registrar Aula
+    show_lesson: Ver Aulas
   lessons:
     new:
       title: 'Registrar uma Aula'

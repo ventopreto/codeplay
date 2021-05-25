@@ -18,7 +18,7 @@ describe 'admin deletes courses' do
     visit root_path
     click_on 'Cursos'
     click_on 'Python'
-    expect {click_on 'Deletar'}.to change {Course.count}.by(-1)
+    expect {click_on 'Deletar Curso'}.to change {Course.count}.by(-1)
     expect(page).to have_content('Curso removido com sucesso')
   end
 end

@@ -1,9 +1,14 @@
-<p> <%= @instructor.name %> </p>
-<% if @instructor.profile_picture.attached? %>
-  <p> <%= image_tag @instructor.profile_picture %> </p>
-<% end %>
-<p> <%= @instructor.email %> </p>
-<p> <%= @instructor.bio %> </p>
-<%= link_to 'Editar', edit_instructor_path(@instructor) %>
-<%= link_to 'Deletar',instructor_path, method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'}, class:"btn btn-warning" %>
-<%= link_to 'Voltar', instructors_path %>
+
+<div class="card  rounded-circle" style="width: 23rem;">
+  <% if @instructor.profile_picture.attached? %>
+  <%= image_tag @instructor.profile_picture %> 
+  <% end %>
+  <div class="card-body">
+    <h5 class="card-title">Nome: <%= @instructor.name %></h5>
+    <p class="card-text">Email: <%= @instructor.email %> </p>
+    <p class="card-text">Descrição:  <%= @instructor.bio %></p>
+        <%= link_to t('links.edit_instructor'), edit_instructor_path(@instructor), class:"btn btn-warning"%>
+        <%= link_to t('links.destroy_instructor'),instructor_path, method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'}, class:"btn btn-danger" %>
+        <%= link_to t('links.back'), instructors_path, class:"btn btn-outline-dark"%>
+  </div>
+</div>
