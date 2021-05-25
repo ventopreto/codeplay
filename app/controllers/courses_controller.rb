@@ -42,7 +42,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     if @course.destroy
-      flash[:alert] = 'Curso Excluido com sucesso'
+      flash[:alert] = 'Curso removido com sucesso'
       redirect_to root_path
     end
   end

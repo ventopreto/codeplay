@@ -20,7 +20,7 @@ describe 'admin registers lesson' do
 
           fill_in 'Nome da Aula', with: 'Aula 3'
           fill_in 'Descrição', with: 'Terceira aula do curso de introdução a python'
-          click_on 'Criar Lesson'
+          click_on 'Criar Aula'
   end
 
   it 'and update with blank fields' do
@@ -41,9 +41,9 @@ describe 'admin registers lesson' do
 
         fill_in 'Nome da Aula', with: ''
         fill_in 'Descrição', with: ''
-        click_on 'Criar Lesson'
+        click_on 'Criar Aula'
 
-        expect(page).to have_content("Não foi possivel criar a aula, preencha todos os campos")
+        expect(page).to have_content("Você deve informar todos os dados da aula")
 
   end
 

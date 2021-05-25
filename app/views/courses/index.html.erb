@@ -12,5 +12,5 @@
   <dd><%= number_to_currency(course.price, :unit => "R$ ", :separator => ",", :delimiter => ".", format: "%u %n") %></dd>
   <% end %>
   </dl>
-      <%= link_to 'Registrar um Curso', new_course_path %>
-      <%= link_to 'Voltar', root_path %>
+      <%= link_to 'Registrar um Curso', new_course_path, class:"btn btn-secondary btn-sm"  %>
+      <%= link_to 'Voltar', root_path, class:"btn btn-light btn-sm"  %>

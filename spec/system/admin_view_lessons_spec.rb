@@ -28,10 +28,6 @@ lesson = Lesson.create!(name: 'Apresentação',
 
 
     expect(page).to have_content("#{lesson.name}")
-
-
-
-    
   end
 
   it 'and view details' do

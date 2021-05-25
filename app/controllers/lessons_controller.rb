@@ -15,7 +15,7 @@ end
       flash[:alert] = 'Aula Criada com sucesso'
       redirect_to course_lessons_path(@course)
     else
-      flash[:alert] = 'Não foi possivel criar a aula, preencha todos os campos'
+      flash[:alert] = 'Você deve informar todos os dados da aula'
       render :new
     end
   end
@@ -24,7 +24,28 @@ def show
   @lesson = Lesson.find(params[:id])
 end
 
+def edit
+  @lesson = Lesson.find(params[:id])
+end
 
+
+def update 
+  @lesson = Lesson.find(params[:id])
+  if @lesson.update(lesson_params)
+    redirect_to course_lesson_path(@lesson)
+    else
+      flash[:alert] = 'Você deve informar todos os dados da aula'
+      render :edit
+  end
+end
+
+def destroy
+  @lesson = Lesson.find(params[:id])
+  if @lesson.destroy
+    flash[:alert] = 'Aula removida com sucesso'
+    redirect_to root_path
+    end
+  end
 
   private
 

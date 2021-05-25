@@ -3,4 +3,7 @@
 <dd><%= @lesson.name %> <br></dd>
 <dl>Descrição da Aula</dl>
 <dd><%= @lesson.description %></dd>
+<%= link_to t('links.edit'), edit_course_lesson_path(@course, @lesson), class:"btn btn-dark" %>
+<%= link_to t('links.destroy'), course_lesson_path(@course), method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'}, class:"btn btn-warning" %>
+<%= link_to t('links.back'), course_lessons_path, class:"btn btn-dark" %>
 </dt>

@@ -36,8 +36,9 @@ end
   end
 
 def destroy
-    instructor = Instructor.find(params[:id])
-    instructor.destroy
+    @instructor = Instructor.find(params[:id])
+    @instructor.destroy
+    flash[:alert] = 'Professor removido com sucesso'
     redirect_to root_path
   end
 

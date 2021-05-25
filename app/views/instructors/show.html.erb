@@ -5,5 +5,5 @@
 <p> <%= @instructor.email %> </p>
 <p> <%= @instructor.bio %> </p>
 <%= link_to 'Editar', edit_instructor_path(@instructor) %>
-<%= link_to 'Excluir',instructor_path, method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'} %>
+<%= link_to 'Deletar',instructor_path, method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'}, class:"btn btn-warning" %>
 <%= link_to 'Voltar', instructors_path %>

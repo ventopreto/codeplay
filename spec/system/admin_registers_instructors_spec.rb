@@ -2,16 +2,19 @@
 
 require 'rails_helper'
 
-describe 'Admin update instructors' do
+describe 'Admin registers instructors' do
+  it 'from index page' do
+    visit root_path
+    click_on 'Professores'
+
+    expect(page).to have_link('Registrar um Professor',
+                              href: new_instructor_path)
+  end
+
   it 'successfully' do
-
-    Instructor.create!(name: 'João', email: 'joao@gmail.com',
-                   bio: 'lerolerolero')
-
     visit root_path
     click_on 'Professor'
-    click_on 'João'
-    click_on 'Editar'
+    click_on 'Registrar um Professor'
 
     fill_in 'Nome', with: 'Luiz Carlos'
     fill_in 'Email', with: 'luiz@gmail.com'
@@ -23,10 +26,11 @@ describe 'Admin update instructors' do
     expect(page).to have_content('Luiz Carlos')
     expect(page).to have_content('luiz@gmail.com')
     expect(page).to have_content('lerolerolerolerolerolerolerolero')
+
     expect(page).to have_link('Voltar')
   end
 
-  it 'and update with blank fields' do
+  it 'and create with blank fields' do
 
     visit root_path
     click_on 'Professor'

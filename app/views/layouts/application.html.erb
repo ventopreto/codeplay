@@ -11,6 +11,14 @@
   </head>
 
   <body>
+ <body>
+    <header>
+      <div id='header-wrap'>
+        <h1><%= link_to 'Code Play', root_path %></h1>
+        <nav>
+        </nav>
+      </div>
+  </header>
       <% flash.each do |nome, mensagem| %>
       <%= content_tag :div, mensagem, class: nome %>
     <% end %>

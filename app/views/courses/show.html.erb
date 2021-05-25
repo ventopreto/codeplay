@@ -15,8 +15,8 @@
     <dd><%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></dd>
 </dl>
 
-    <%= link_to 'Registrar Aula', new_course_lesson_path(@course, @lesson) %>
-    <%= link_to 'Ver Aulas', course_lessons_path(@course, @lesson) %>
-    <%= link_to 'Editar', edit_course_path %>
-    <%= link_to 'Deletar', course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'} %>
-    <%= link_to 'Voltar', courses_path %>
+    <%= link_to 'Registrar Aula', new_course_lesson_path(@course, @lesson), class:"btn btn-dark"  %>
+    <%= link_to 'Ver Aulas', course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
+    <%= link_to 'Editar', edit_course_path, class:"btn btn-dark" %>
+    <%= link_to 'Deletar', course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'}, class:"btn btn-warning" %>
+    <%= link_to 'Voltar', courses_path, class:"btn btn-dark" %>

@@ -1,0 +1,25 @@
+pt-BR:
+  links:
+    back: Voltar
+    edit: Editar
+    destroy: Deletar
+  lessons:
+    new:
+      title: 'Registrar uma Aula'
+    update:
+      success: Aula atualizado com sucesso
+    edit:
+      title: 'Registrar Aula'
+    show: 
+      edit: Editar
+    activerecord:
+      models:
+        lesson: Aula
+    attributes:
+        lesson: 
+          name: Nome
+          description: Descrição
+          course: Curso
+    
+
+

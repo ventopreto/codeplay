@@ -1,2 +1,2 @@
 <h1>Cadastro de Professores</h1>
-<%=render 'form' %>
+<%= render partial: 'form', locals: {instructor:@instructor, button_text: 'Cadastrar Professor'} %>

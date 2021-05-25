@@ -36,7 +36,7 @@ describe 'Admin view instructors' do
     expect(page).to have_content('pkfjghikdfkgh')
   end
 
-  it 'and no course is available' do
+  it 'and no instructor is available' do
     visit root_path
     click_on 'Professores'
 
@@ -54,7 +54,7 @@ describe 'Admin view instructors' do
     expect(current_path).to eq root_path
   end
 
-  it 'and return to promotions page' do
+  it 'and return to index page' do
     Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
     bio: 'seilaksahkhashk')
 

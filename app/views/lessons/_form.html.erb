@@ -3,8 +3,8 @@
     <%= f.text_field :name %>
     <%= f.label :description, 'Descrição' %>
     <%= f.text_field :description %>
-    <%= f.submit %>
+    <%= f.submit button_text %>
 <% end %>
-<%= link_to 'Voltar', course_path(course) %>
+<%= link_to t('links.back'), course_path(course) %>
 
 
