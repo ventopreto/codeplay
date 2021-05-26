@@ -1,9 +1,30 @@
+---
 pt-BR:
+  courses:
+    new: 
+      title: Registrar um Curso
+    edit:
+    destroy:
+      success: Curso removido com sucesso
+      title: Atualizar um Curso
   links:
     back: Voltar
     edit_course: Editar Curso
     destroy_course: Deletar Curso
     new_course: Registrar Curso
+  activerecord:
+    models:
+      course: 'Curso'
+    attributes:
+      course: 
+        name: 'Nome'
+        description: 'Descrição'
+        code: 'Código'
+        price: 'Preço'
+        instructor: 'Professor'
+
+
+
 
     
 

@@ -4,6 +4,11 @@ pt-BR:
     edit_instructor: Editar Professor
     destroy_instructor: Deletar Professor
     new_instructor: Registrar Professor
+  instructors:
+    new:
+      title: Registrar Professor
+    edit:
+      title: Atualizar Professor
 
     
 

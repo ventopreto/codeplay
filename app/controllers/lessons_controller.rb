@@ -12,10 +12,10 @@ end
   def create
     @lesson = @course.lessons.build(lesson_params)
     if @lesson.save
-      flash[:alert] = 'Aula Criada com sucesso'
+      flash[:success] = t('.success')
       redirect_to course_lessons_path(@course)
     else
-      flash[:alert] = 'Você deve informar todos os dados da aula'
+      flash[:failure] = t('.failure')
       render :new
     end
   end
@@ -29,12 +29,15 @@ def edit
 end
 
 
+
 def update 
   @lesson = Lesson.find(params[:id])
   if @lesson.update(lesson_params)
+    flash[:success] = t('.success')
+
     redirect_to course_lesson_path(@lesson)
     else
-      flash[:alert] = 'Você deve informar todos os dados da aula'
+      flash[:failure] = 'Você deve informar todos os dados da aula'
       render :edit
   end
 end
@@ -42,12 +45,16 @@ end
 def destroy
   @lesson = Lesson.find(params[:id])
   if @lesson.destroy
-    flash[:alert] = 'Aula removida com sucesso'
+    flash[:success] = t('.success')
     redirect_to root_path
     end
   end
 
   private
+
+  def set_course
+    @lesson = Lesson.find(params[:id])
+  end
 
   def get_course
     @course = Course.find(params[:course_id])

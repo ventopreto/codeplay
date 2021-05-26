@@ -8,8 +8,14 @@ pt-BR:
   lessons:
     new:
       title: 'Registrar uma Aula'
+    create:
+      success: 'Aula criada com sucesso'
+      failure: 'Você deve informar todos os dados da aula'
     update:
-      success: Aula atualizado com sucesso
+      success: 'Aula atualizado com sucesso'
+      failure: 'Você deve informar todos os dados da aula'
+    destroy:
+      success: 'Aula removida com sucesso'
     edit:
       title: 'Registrar Aula'
     show: 
