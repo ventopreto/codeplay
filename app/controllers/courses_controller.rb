@@ -18,7 +18,7 @@ class CoursesController < ApplicationController
     if @course.save
       redirect_to @course
     else
-      flash[:alert] = 'Você deve informar todos os dados do curso'
+      flash[:fail] = t('.fail')
         render :new
     end
   end
@@ -32,9 +32,10 @@ class CoursesController < ApplicationController
     @instructors = Instructor.all
     @course = Course.find(params[:id])
     if @course.update(course_params)
+      flash[:success] = t('.success')
       redirect_to @course
     else
-      flash[:alert] = 'Você deve informar todos os dados do curso'
+      flash[:fail] = t('.fail')
       render :edit
     end
   end
@@ -42,7 +43,7 @@ class CoursesController < ApplicationController
   def destroy
     @course = Course.find(params[:id])
     if @course.destroy
-      flash[:failure] = 'Curso removido com sucesso'
+      flash[:success] = t('.success') 
       redirect_to root_path
     end
   end

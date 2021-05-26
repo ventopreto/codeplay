@@ -1,3 +1,3 @@
 class ApplicationController < ActionController::Base
-  add_flash_types :success, :failure
+  add_flash_types :success, :fail
 end

@@ -14,9 +14,10 @@ class InstructorsController < ApplicationController
   def create
     @instructor = Instructor.new(instructor_params)
    if @instructor.save
+    flash[:success] = t('.success')
     redirect_to @instructor
   else  
-    flash[:alert] = 'Você deve informar todos os dados do professor'
+    flash[:fail] = t('.fail')
     render :new
   end
 end
@@ -28,9 +29,10 @@ end
   def update
     @instructor = Instructor.find(params[:id])
   if @instructor.update(instructor_params)
+    flash[:success] = t('.success')
     redirect_to @instructor
   else 
-  flash[:alert] = 'Você deve informar todos os dados do professor'
+  flash[:fail] = t('.fail')
   render :edit
     end
   end
@@ -38,7 +40,7 @@ end
 def destroy
     @instructor = Instructor.find(params[:id])
     @instructor.destroy
-    flash[:alert] = 'Professor removido com sucesso'
+    flash[:success] = t('.success')
     redirect_to root_path
   end
 

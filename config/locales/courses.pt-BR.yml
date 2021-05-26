@@ -4,9 +4,15 @@ pt-BR:
     new: 
       title: Registrar um Curso
     edit:
+    create:
+      success: Aula criada com sucesso
+      fail: 'Você deve informar todos os dados do curso'
     destroy:
       success: Curso removido com sucesso
       title: Atualizar um Curso
+    update:
+      success: 'Curso Atualizado com sucesso'
+      fail: 'Você deve informar todos os dados do curso'
   links:
     back: Voltar
     edit_course: Editar Curso

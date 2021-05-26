@@ -15,7 +15,7 @@ end
       flash[:success] = t('.success')
       redirect_to course_lessons_path(@course)
     else
-      flash[:failure] = t('.failure')
+      flash[:fail] = t('.fail')
       render :new
     end
   end
@@ -37,7 +37,7 @@ def update
 
     redirect_to course_lesson_path(@lesson)
     else
-      flash[:failure] = 'Você deve informar todos os dados da aula'
+      flash[:fail] = t('.fail')
       render :edit
   end
 end

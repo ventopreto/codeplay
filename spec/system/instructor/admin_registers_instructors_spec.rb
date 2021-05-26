@@ -33,7 +33,7 @@ describe 'Admin registers instructors' do
   it 'and create with blank fields' do
 
     visit root_path
-    click_on 'Professor'
+    click_on 'Professores'
     click_on 'Registrar um Professor'
     click_on 'Cadastrar Professor'
 

@@ -1,10 +1,10 @@
   <% if @lessons.empty? %>
  <p>Nenhuma Aula disponível</p>
- <%= link_to t('links.back'), courses_path, class:"btn btn-light btn-sm" %>
+<% else %>
+<% @lessons.each do |lesson| %>
+<h1><%= link_to lesson.name, [@course, lesson] %></h1>
+<% end %>
+<%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark" %>
  <% end %>
 
 
-<% @lessons.each do |lesson| %>
-<h1><%= link_to lesson.name, [@course, lesson] %></h1>
-<%= link_to t('links.back'), courses_path, class:"btn btn-light btn-sm" %>
-<% end %>

@@ -13,11 +13,22 @@ ul li {
     display: inline;
 }
 
+.base-alert {
+  position: relative;
+  padding: 0.5rem 1.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+ }
 
 .success {
-  background-color: green;
-  color: #f5f5f5;
-  font-weight: 600;
+  color: #006315;
+  font-weight: 1000;
+  background: rgb(147, 250, 147) image_url('check-lg.svg') no-repeat 7px center;
 }
 
+.fail {
+  color: #8500009f;
+  font-weight: 1000;
+  background: rgb(248, 151, 151) image_url('x-circle.svg') no-repeat 7px center; ;
 
+}

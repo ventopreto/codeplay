@@ -1,9 +1,9 @@
 
-<div class="card  rounded-circle" style="width: 23rem;">
+<div class="card mx-auto" style="width: 25rem;">
   <% if @instructor.profile_picture.attached? %>
-  <%= image_tag @instructor.profile_picture %> 
+  <%= image_tag @instructor.profile_picture, size: "300x250", class:"mx-auto" %> 
   <% end %>
-  <div class="card-body">
+  <div class="card-body mx-auto">
     <h5 class="card-title">Nome: <%= @instructor.name %></h5>
     <p class="card-text">Email: <%= @instructor.email %> </p>
     <p class="card-text">Descrição:  <%= @instructor.bio %></p>
