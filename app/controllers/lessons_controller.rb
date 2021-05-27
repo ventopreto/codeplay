@@ -61,7 +61,7 @@ def destroy
   end
 
   def lesson_params
-    params.require(:lesson).permit(:name, :description)
+    params.require(:lesson).permit(:name, :description, :duration)
   end
 end
 

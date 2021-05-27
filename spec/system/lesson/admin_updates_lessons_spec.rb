@@ -14,7 +14,8 @@ describe 'admin updates lessons' do
                                           enrollment_deadline: '25/05/2021')
                  lesson = Lesson.create(name: 'aula 1',
                                         description: 'primeira aula do curso',
-                                         course:course)
+                                        duration: 50,
+                                        course:course)
                     
 
     
@@ -26,9 +27,11 @@ describe 'admin updates lessons' do
     click_on 'Editar'
     fill_in 'Nome', with: 'Aula 1'
     fill_in 'Descrição', with: 'Primeira Aula do Curso'
+    fill_in 'Duração', with: 40
     click_on 'Atualizar Aula'
 
     expect(page).to have_content('Aula 1')
     expect(page).to have_content('Primeira Aula do Curso')
+    expect(page).to have_content('40 minutos')
   end
 end

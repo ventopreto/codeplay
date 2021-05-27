@@ -1,0 +1,21 @@
+---
+  pt-BR:
+    activerecord:
+      models:
+        user:
+          one: Usuário(a)
+          other: Usuários(as)
+      attributes:
+        user:
+          password: Senha
+          password_confirmation: Confirmação de senha
+    devise:
+        registrations:
+            new:
+                submit: Criar conta
+        sessions:
+            new:
+                remember_me: Lembrar-me
+                log_in: Entrar
+
+

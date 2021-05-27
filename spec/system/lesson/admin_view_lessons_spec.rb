@@ -17,6 +17,7 @@ describe 'Admin view lessons' do
 
 lesson = Lesson.create!(name: 'Apresentação',
                     description: 'Aula iniciação do curso de react',
+                    duration: 50,
                     course: course)
 
                         
@@ -44,6 +45,7 @@ lesson = Lesson.create!(name: 'Apresentação',
 
 lesson = Lesson.create!(name: 'Apresentação',
                     description: 'Aula iniciação do curso de react',
+                    duration: 50,
                     course: course)
 
     visit root_path
@@ -54,5 +56,6 @@ lesson = Lesson.create!(name: 'Apresentação',
 
     expect(page).to have_content("#{lesson.name}")
     expect(page).to have_content("#{lesson.description}")
+    expect(page).to have_content("#{lesson.duration}")
   end
 end

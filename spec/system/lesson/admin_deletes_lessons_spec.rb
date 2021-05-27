@@ -16,6 +16,7 @@ describe 'admin deletes courses' do
                             enrollment_deadline: '31/08/2022')
                  lesson = Lesson.create!(name: 'Apresentação',
                                           description: 'Aula Inicial',
+                                          duration: 50,
                                           course: course)
 
     visit root_path

@@ -20,6 +20,7 @@ describe 'admin registers lesson' do
 
           fill_in 'Nome da Aula', with: 'Aula 3'
           fill_in 'Descrição', with: 'Terceira aula do curso de introdução a python'
+          fill_in 'Duração', with: 50
           click_on 'Criar Aula'
   end
 
@@ -41,6 +42,7 @@ describe 'admin registers lesson' do
 
         fill_in 'Nome da Aula', with: ''
         fill_in 'Descrição', with: ''
+        fill_in 'Duração', with: ''
         click_on 'Criar Aula'
 
         expect(page).to have_content("Você deve informar todos os dados da aula")
