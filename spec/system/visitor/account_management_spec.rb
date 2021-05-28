@@ -74,6 +74,21 @@ describe 'Visitor creates account' do
    end
 
    context 'logout' do
+    it 'successfully' do
+      user = User.create!(email: 'x@gmail.com',
+                                      password: '123456')
+      
+      login_as user, scope: :user
+      visit root_path
+      click_on 'Sair'
+
+      expect(page).to have_text('Saiu com sucesso')
+      expect(page).to_not have_text('x@gmail.com')
+      expect(current_path).to eq(root_path)
+      expect(page).to have_link('Registrar-me')
+      expect(page).to have_link('Logar')
+      expect(page).to_not have_link('Sair')
+    end
    end
   end
 end
