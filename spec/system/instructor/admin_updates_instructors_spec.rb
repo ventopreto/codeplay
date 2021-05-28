@@ -4,11 +4,17 @@ require 'rails_helper'
 
 describe 'Admin updates instructors' do
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+                                    password: '123456')
 
     Instructor.create!(name: 'João', email: 'joao@gmail.com',
                    bio: 'lerolerolero')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Professor'
     click_on 'João'
     click_on 'Editar'
@@ -27,11 +33,17 @@ describe 'Admin updates instructors' do
   end
 
   it 'and update with blank fields' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
 
     professor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
     bio: 'lerolerolero')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Professor'
     click_on "#{professor.name}"
     click_on 'Editar'

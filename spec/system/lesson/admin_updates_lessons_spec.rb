@@ -4,6 +4,8 @@ require 'rails_helper'
 
 describe 'admin updates lessons' do
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
 
     instructor = Instructor.create(name: 'Fabio kon',
                                                     email: 'fabio@gmail.com')
@@ -20,6 +22,10 @@ describe 'admin updates lessons' do
 
     
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on "#{course.name}"
     click_on 'Ver Aulas'

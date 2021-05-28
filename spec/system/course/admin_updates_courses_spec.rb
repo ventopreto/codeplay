@@ -4,6 +4,10 @@ require 'rails_helper'
 
 describe 'Admin updates courses' do
   it 'sucessfully' do
+
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
    instructor = Instructor.create!(name: 'Fulano Sicrano', email: 'fulano@gmail.com')
     Course.create!(name: 'Ruby',
                        description: 'Um curso sobre ruby',
@@ -13,6 +17,10 @@ describe 'Admin updates courses' do
                         enrollment_deadline: '25/05/2021')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Ruby'
     click_on 'Editar'
@@ -35,7 +43,8 @@ describe 'Admin updates courses' do
   end
 
   it 'with blank attributes' do
-
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
 
     instructor = Instructor.create!(name: 'Fulano Sicrano', email: 'fulano@gmail.com')
     Course.create!(name: 'Ruby',
@@ -46,6 +55,10 @@ describe 'Admin updates courses' do
                         enrollment_deadline: '25/05/2021')
 
   visit root_path
+  click_on 'Logar'
+  fill_in 'Email', with: 'x@gmail.com'
+  fill_in 'Senha', with: '123456'
+  click_on 'Entrar'
   click_on 'Cursos'
   click_on 'Ruby'
   click_on 'Editar'

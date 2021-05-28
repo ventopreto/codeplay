@@ -4,6 +4,9 @@ require 'rails_helper'
 
 describe 'Admin view courses' do
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+                                    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -18,6 +21,10 @@ describe 'Admin view courses' do
                    enrollment_deadline: '20/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
 
     expect(page).to have_content('Ruby')
@@ -29,6 +36,9 @@ describe 'Admin view courses' do
   end
 
   it 'and view details' do
+    user = User.create!(email: 'x@gmail.com',
+                                    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -43,6 +53,10 @@ describe 'Admin view courses' do
                    enrollment_deadline: '20/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Ruby on Rails'
 
@@ -55,13 +69,24 @@ describe 'Admin view courses' do
   end
 
   it 'and no course is available' do
+
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
 
     expect(page).to have_content('Nenhum curso disponível')
   end
 
   it 'and return to home page' do
+    user = User.create!(email: 'x@gmail.com',
+                                    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -71,6 +96,10 @@ describe 'Admin view courses' do
                    enrollment_deadline: '22/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Voltar'
 
@@ -78,6 +107,9 @@ describe 'Admin view courses' do
   end
 
   it 'and return to promotions page' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -87,6 +119,10 @@ describe 'Admin view courses' do
                    enrollment_deadline: '22/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Ruby'
     click_on 'Voltar'

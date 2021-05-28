@@ -1,10 +1,7 @@
   <% if @courses.empty? %>
  <p>'Nenhum curso disponível'</p>
- <%= link_to t('links.back'), courses_path, class:"btn btn-light btn-sm" %>
- <% end %>
-
-
-<% @courses.each do |course| %>
+  <% else %>
+  <% @courses.each do |course| %>
 <div class="card rounded-circle border border-dark" style="width: 18rem;">
 </div>
   <div class="card-body">
@@ -13,6 +10,10 @@
     <p class="card-text">Descrição:  <%= course.description %> </p>
 
   </div>
+ <% end %>
+
+
+
 <% end %>
 <%= link_to 'Registrar um Curso', new_course_path, class:"btn btn-success btn-sm" %>
 <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>

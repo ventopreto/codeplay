@@ -3,20 +3,20 @@
 require 'rails_helper'
 
 describe 'Admin registers courses' do
-  it 'from index page' do
-    visit root_path
-    click_on 'Cursos'
-
-    expect(page).to have_link('Registrar um Curso',
-                              href: new_course_path)
-  end
 
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
     
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Registrar um Curso'
 
@@ -41,6 +41,9 @@ describe 'Admin registers courses' do
   end
   
   it 'and attributes cannot be blank' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -50,6 +53,10 @@ describe 'Admin registers courses' do
                    enrollment_deadline: '22/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Registrar um Curso'
     fill_in 'Nome', with: ''
@@ -63,6 +70,9 @@ describe 'Admin registers courses' do
   end
 
   it 'and code must be unique' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -72,6 +82,10 @@ describe 'Admin registers courses' do
                    enrollment_deadline: '22/12/2033')
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'Registrar um Curso'
     fill_in 'Código', with: 'RUBYBASIC'

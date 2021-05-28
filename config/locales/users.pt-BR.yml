@@ -9,13 +9,26 @@
         user:
           password: Senha
           password_confirmation: Confirmação de senha
+          remember_me: Lembrar-me
     devise:
         registrations:
             new:
+                title: Registro
                 submit: Criar conta
         sessions:
             new:
+                title: Login
                 remember_me: Lembrar-me
                 log_in: Entrar
+        passwords:
+          new:
+            title: Esqueceu sua senha?
+            submit: Me envie instruções de redefinição senha
+        shared:
+          links:
+            Forgot your password?: Esqueci minha senha
+            Sign up: Registrar-se
+            Log in: Logar
+
 
 

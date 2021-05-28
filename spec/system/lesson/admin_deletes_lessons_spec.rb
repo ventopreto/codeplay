@@ -5,6 +5,9 @@ require 'rails_helper'
 describe 'admin deletes courses' do
   it 'sucessfully' do
 
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -20,6 +23,10 @@ describe 'admin deletes courses' do
                                           course: course)
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on "#{course.name}"
     click_on 'Ver Aulas'

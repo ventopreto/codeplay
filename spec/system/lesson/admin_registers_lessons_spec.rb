@@ -2,18 +2,24 @@
 
 describe 'admin registers lesson' do
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
 
-                      instructor = Instructor.create!(name: 'Fulano Sicrano',
-                      email: 'fulano@codeplay.com.br')
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
 
-                      course =  Course.create(name: 'Introdução a ciencias da computação com python',
-                                                description: 'Um curso sobre python',
-                                                code: 'PYTHONCODE',
-                                                instructor: instructor,
-                                                price: '0800',
-                                                enrollment_deadline: '22/12/2033')
+    course =  Course.create(name: 'Introdução a ciencias da computação com python',
+                        description: 'Um curso sobre python',
+                        code: 'PYTHONCODE',
+                        instructor: instructor,
+                        price: '0800',
+                        enrollment_deadline: '22/12/2033')
 
           visit root_path
+          click_on 'Logar'
+          fill_in 'Email', with: 'x@gmail.com'
+          fill_in 'Senha', with: '123456'
+          click_on 'Entrar'
           click_on 'Cursos'
           click_on "#{course.name}"
           click_on 'Registrar Aula'
@@ -25,6 +31,10 @@ describe 'admin registers lesson' do
   end
 
   it 'and update with blank fields' do
+
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -36,6 +46,10 @@ describe 'admin registers lesson' do
                               enrollment_deadline: '22/12/2033')
 
         visit root_path
+        click_on 'Logar'
+        fill_in 'Email', with: 'x@gmail.com'
+        fill_in 'Senha', with: '123456'
+        click_on 'Entrar'
         click_on 'Cursos'
         click_on "#{course.name}"
         click_on 'Registrar Aula'
@@ -50,6 +64,9 @@ describe 'admin registers lesson' do
   end
 
       it 'and click on back button' do
+        user = User.create!(email: 'x@gmail.com',
+        password: '123456')
+
         instructor = Instructor.create!(name: 'Fulano Sicrano',
         email: 'fulano@codeplay.com.br')
     
@@ -61,6 +78,10 @@ describe 'admin registers lesson' do
                                   enrollment_deadline: '22/12/2033')
         
         visit root_path
+        click_on 'Logar'
+        fill_in 'Email', with: 'x@gmail.com'
+        fill_in 'Senha', with: '123456'
+        click_on 'Entrar'
         click_on 'Cursos'
         click_on "#{course.name}"
         click_on  'Registrar Aula'

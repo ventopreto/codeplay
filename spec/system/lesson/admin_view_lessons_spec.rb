@@ -4,6 +4,9 @@ require 'rails_helper'
 
 describe 'Admin view lessons' do
   it 'successfully' do
+
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
     
     instructor = Instructor.create(name: 'João',
     email: 'joão@gmail.com')
@@ -23,6 +26,10 @@ lesson = Lesson.create!(name: 'Apresentação',
                         
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'React'
     click_on 'Ver Aulas'
@@ -32,6 +39,9 @@ lesson = Lesson.create!(name: 'Apresentação',
   end
 
   it 'and view details' do
+
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
 
     instructor = Instructor.create(name: 'João',
     email: 'joão@gmail.com')
@@ -49,6 +59,10 @@ lesson = Lesson.create!(name: 'Apresentação',
                     course: course)
 
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'React'
     click_on 'Ver Aulas'

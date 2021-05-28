@@ -3,16 +3,16 @@
 require 'rails_helper'
 
 describe 'Admin registers instructors' do
-  it 'from index page' do
-    visit root_path
-    click_on 'Professores'
-
-    expect(page).to have_link('Registrar um Professor',
-                              href: new_instructor_path)
-  end
 
   it 'successfully' do
+    user = User.create!(email: 'x@gmail.com',
+                                    password: '123456')
+
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Professor'
     click_on 'Registrar um Professor'
 
@@ -32,7 +32,14 @@ describe 'Admin registers instructors' do
 
   it 'and create with blank fields' do
 
+    user = User.create!(email: 'x@gmail.com',
+    password: '123456')
+
     visit root_path
+    click_on 'Logar'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    click_on 'Entrar'
     click_on 'Professores'
     click_on 'Registrar um Professor'
     click_on 'Cadastrar Professor'

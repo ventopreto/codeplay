@@ -3,24 +3,16 @@
 <% else %>
 
   <div class="card">
-        <% @instructors.to_ary.in_groups_of(2) do |instructor, instructor2| %>
         <div class="row">
-         <div class="card col-6 text-center">
+        <% @instructors.each do |instructor| %>
+         <div class="card col-3 text-center">
             <% if instructor.profile_picture.attached? %>
               <%= image_tag instructor.profile_picture, size: "100x100", class:"mx-auto rounded-circle"%> 
             <% end %>
           <h5> <%= link_to instructor.name, instructor %> </h5>
           </div>
-              <% if instructor2 %> <%# To take care of odd groups %>
-         <div class="card col-6 text-center">
-            <% if instructor2.profile_picture.attached? %>
-              <%= image_tag instructor2.profile_picture, size: "100x100", class:"mx-auto rounded-circle"%> 
-            <% end %>
-          <h5> <%= link_to instructor2.name, instructor2 %> </h5>
-              <% end %>
-         </div>
+          <% end %>
         </div>
-         <% end %>
 </div>
 <% end %>
 <%= link_to 'Registrar um Professor', new_instructor_path, class:"btn btn-success btn-sm" %>
