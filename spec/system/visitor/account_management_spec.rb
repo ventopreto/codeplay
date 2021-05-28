@@ -16,13 +16,43 @@ describe 'Visitor creates account' do
      expect(page).to have_link('Sair')
    end
 
-   xit 'without valid field' do
+   it 'without valid field' do
+    visit root_path
+    click_on 'Registrar-me'
+    fill_in 'Email', with: ''
+    fill_in 'Senha', with: ''
+    fill_in 'Confirmação de senha', with: ''
+    click_on 'Criar conta'
+
+    expect(page).to have_content('Email não pode ficar em branco')
+    expect(page).to have_content('Senha não pode ficar em branco')
+ 
+
    end
 
-   xit 'password not match confirmation' do
+   it 'password not match confirmation' do
+    visit root_path
+    click_on 'Registrar-me'
+    fill_in 'Email', with: 'test@gmail.com'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação de senha', with: '654321'
+    click_on 'Criar conta'
+
+    expect(page).to have_content('Confirmação de senha não é igual a Senha')
    end
 
-   xit 'with email not unique' do
+   it 'with email not unique' do
+    User.create!(email: 'x@gmail.com',
+                        password: '123456')
+
+    visit root_path
+    click_on 'Registrar-me'
+    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Senha', with: '123456'
+    fill_in 'Confirmação de senha', with: '123456'
+    click_on 'Criar conta'
+
+    expect(page).to have_content('Email já está em uso')
    end
 
 
