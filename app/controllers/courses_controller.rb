@@ -47,7 +47,7 @@ before_action :set_course, only: %i{show edit update destroy order}
 end
 
   def order
-    Order.create(user: current_user, course: @course)
+    current_user.orders.create(course: @course, price: @course.price)
     flash[:success] = 'Curso comprado com sucesso'
     redirect_to my_courses_courses_path
   end
