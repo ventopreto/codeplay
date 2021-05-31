@@ -11,5 +11,10 @@
     <%= link_to t('links.edit_course'), edit_course_path, class:"btn btn-warning" %>
     <%= link_to t('links.destroy_course'), course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'}, class:"btn btn-danger" %>
     <%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark"%>
+    <% if user_signed_in?%>
+   <%= link_to 'Comprar', order_course_path, method: :post  %> 
+   <% else %>
+   <p>faça <%=link_to 'login', new_user_session_path %> Faça login para comprar esse curso</p>
+   <% end %>
   </div>
 </div>

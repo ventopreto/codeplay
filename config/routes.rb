@@ -3,6 +3,8 @@ Rails.application.routes.draw do
   root 'home#index'
   resources :courses do
     resources :lessons
+    post 'order', on: :member
+    get 'my_courses', on: :collection
   end
   resources :instructors
 

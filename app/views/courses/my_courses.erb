@@ -1,0 +1,15 @@
+  <h1>Meus Cursos</h1>
+  <% if @orders.empty? %>
+ <p>'Nenhum curso disponível'</p>
+  <% else %>
+  <% @orders.each do |order| %>
+<div class="card rounded-circle border border-dark" style="width: 18rem;">
+</div>
+  <div class="card-body">
+    <h5>Nome: <%= order.course.name %> </h5>
+     <p class="card-text">Comprado em: <%= order.created_at %></p>
+    <p class="card-text">Descrição:  <%= order.course.description %> </p>
+  </div>
+ <% end %>
+<% end %>
+<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>

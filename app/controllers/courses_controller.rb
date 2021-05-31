@@ -1,10 +1,11 @@
 class CoursesController < ApplicationController
+before_action :set_course, only: %i{show edit update destroy order}
+
   def index
     @courses = Course.all
   end
 
   def show
-    @course = Course.find(params[:id])
   end
 
   def new
@@ -24,13 +25,11 @@ class CoursesController < ApplicationController
   end
 
   def edit
-    @course = Course.find(params[:id])
     @instructors = Instructor.all
   end
 
   def update
     @instructors = Instructor.all
-    @course = Course.find(params[:id])
     if @course.update(course_params)
       flash[:success] = t('.success')
       redirect_to @course
@@ -41,14 +40,27 @@ class CoursesController < ApplicationController
   end
 
   def destroy
-    @course = Course.find(params[:id])
     if @course.destroy
       flash[:success] = t('.success') 
       redirect_to root_path
-    end
+  end
+end
+
+  def order
+    Order.create(user: current_user, course: @course)
+    flash[:success] = 'Curso comprado com sucesso'
+    redirect_to my_courses_courses_path
+  end
+
+  def my_courses
+    @orders = current_user.orders
   end
 
 private
+
+def set_course
+  @course = Course.find(params[:id])
+end
 
 def course_params
   params.require(:course).permit(:name,:description,:code,:price, :instructor_id,:enrollment_deadline)

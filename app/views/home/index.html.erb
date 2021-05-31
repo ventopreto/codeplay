@@ -1,2 +1,11 @@
 <h3>Boas vindas ao sistema de gestão de cursos e aulas</h3>
 
+<h3>Cursos Disponíveis</h3>
+<div class="card" style="width: 15rem;">
+<% @courses.each do |course|%>
+<h5 class="card-title">Nome: <%= link_to course.name, course%></h5>
+<p class="card-text">Descrição: <%= course.description %></p>
+<p class="card-text">Preço: <%= number_to_currency(course.price) %></p>
+<% end %>
+</div>
+
