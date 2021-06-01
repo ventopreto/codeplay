@@ -14,12 +14,9 @@ describe 'admin registers lesson' do
                         instructor: instructor,
                         price: '0800',
                         enrollment_deadline: '22/12/2033')
-
+                        
+          login_as user, scope: :user   
           visit root_path
-          click_on 'Logar'
-          fill_in 'Email', with: 'x@gmail.com'
-          fill_in 'Senha', with: '123456'
-          click_on 'Entrar'
           click_on 'Cursos'
           click_on "#{course.name}"
           click_on 'Registrar Aula'

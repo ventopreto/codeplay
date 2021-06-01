@@ -57,12 +57,9 @@ lesson = Lesson.create!(name: 'Apresentação',
                     description: 'Aula iniciação do curso de react',
                     duration: 50,
                     course: course)
-
+                    Order.create!(user: user, course: course)
+    login_as user, scope: :user   
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Cursos'
     click_on 'React'
     click_on 'Ver Aulas'

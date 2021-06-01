@@ -1,5 +1,8 @@
 class LessonsController < ApplicationController
-  before_action :get_course
+  before_action :authenticate_user!, only: %i[show]
+  before_action :set_course
+  before_action :set_lesson, only: %i[show edit destroy update] 
+  before_action :user_has_order, only: %i[show]
 
 def index
   @lessons = @course.lessons
@@ -21,17 +24,15 @@ end
   end
 
 def show
-  @lesson = Lesson.find(params[:id])
 end
 
 def edit
-  @lesson = Lesson.find(params[:id])
+
 end
 
 
 
 def update 
-  @lesson = Lesson.find(params[:id])
   if @lesson.update(lesson_params)
     flash[:success] = t('.success')
 
@@ -43,7 +44,7 @@ def update
 end
 
 def destroy
-  @lesson = Lesson.find(params[:id])
+
   if @lesson.destroy
     flash[:success] = t('.success')
     redirect_to root_path
@@ -52,11 +53,15 @@ def destroy
 
   private
 
-  def set_course
+  def user_has_order
+    redirect_to @lesson.course unless current_user.courses.include?(@lesson.course)
+  end
+
+  def set_lesson
     @lesson = Lesson.find(params[:id])
   end
 
-  def get_course
+  def set_course
     @course = Course.find(params[:course_id])
   end
 

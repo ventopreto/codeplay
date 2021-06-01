@@ -2,7 +2,7 @@
  <p>Nenhuma Aula disponível</p>
 <% else %>
 <% @lessons.each do |lesson| %>
-<h1><%= link_to lesson.name, [@course, lesson] %></h1>
+<h1><%= link_to_if current_user && current_user.courses.include?(@course), lesson.name, [@course, lesson] %></h1>
 <% end %>
 <%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark" %>
  <% end %>
