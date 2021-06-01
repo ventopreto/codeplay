@@ -1,33 +1,37 @@
 ---
 pt-BR:
-  courses:
-    new: 
-      title: Registrar um Curso
-    edit:
-    create:
-      success: Aula criada com sucesso
-      fail: 'Você deve informar todos os dados do curso'
-    destroy:
-      success: Curso removido com sucesso
-      title: Atualizar um Curso
-    update:
-      success: 'Curso Atualizado com sucesso'
-      fail: 'Você deve informar todos os dados do curso'
   links:
     back: Voltar
     edit_course: Editar Curso
     destroy_course: Deletar Curso
     new_course: Registrar Curso
-  activerecord:
-    models:
-      course: 'Curso'
-    attributes:
-      course: 
-        name: 'Nome'
-        description: 'Descrição'
-        code: 'Código'
-        price: 'Preço'
-        instructor: 'Professor'
+  admin:
+    courses:
+      form:
+        submit: Criar curso
+      new: 
+        title: Registrar um Curso
+      edit:
+      create:
+        success: Aula criada com sucesso
+        fail: 'Você deve informar todos os dados do curso'
+      edit:
+        title: Atualizar um Curso
+      destroy:
+        success: Curso removido com sucesso
+      update:
+        success: 'Curso Atualizado com sucesso'
+        fail: 'Você deve informar todos os dados do curso'
+    activerecord:
+      models:
+        course: 'Curso'
+      attributes:
+        course: 
+          name: 'Nome'
+          description: 'Descrição'
+          code: 'Código'
+          price: 'Preço'
+          instructor: 'Professor'
 
 
 

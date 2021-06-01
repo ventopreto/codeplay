@@ -10,7 +10,7 @@
 <div class="card mx-auto" style="width: 50rem;">
   <div class="card-body">
 
-<%= form_with model: course do |f| %>
+<%= form_with model: [:admin, course] do |f| %>
 <div class="row g-2">
   <div class="col-md-6">
       <%= f.label :name, "Nome", class:"form-label"%>
