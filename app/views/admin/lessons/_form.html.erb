@@ -1,6 +1,6 @@
 <div class="card mx-auto" style="width: 50rem;">
   <div class="card-body">
-<%= form_with model: [@course, lesson] do |f| %>
+<%= form_with model: [:admin, course, lesson] do |f| %>
 <div class="row g-2 ml-2">
   <div class="col-md-6">
     <%= f.label :name, 'Nome da Aula', class:"form-label" %>
@@ -22,7 +22,7 @@
     <%= f.submit button_text, class:"btn btn-outline-dark btn-sm" %>
 <% end %>
 
-<%= link_to t('links.back'), course_path(course), class:"btn btn-outline-dark btn-sm"%>
+<%= link_to t('links.back'), admin_course_path(course), class:"btn btn-outline-dark btn-sm"%>
  </div>
   </div>
 </div>

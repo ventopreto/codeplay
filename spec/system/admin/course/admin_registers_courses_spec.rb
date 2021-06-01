@@ -30,7 +30,7 @@ describe 'Admin registers courses' do
     fill_in 'Data limite de matrícula', with: '22/12/2033'
     click_on 'Criar curso'
 
-    expect(current_path).to eq(course_path(Course.last))
+    expect(current_path).to eq(admin_course_path(Course.last))
     expect(page).to have_content('Ruby on Rails')
     expect(page).to have_content('Um curso de Ruby on Rails')
     expect(page).to have_content('RUBYONRAILS')

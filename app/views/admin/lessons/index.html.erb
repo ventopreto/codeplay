@@ -1,0 +1,10 @@
+  <% if @lessons.empty? %>
+ <p>Nenhuma Aula disponível</p>
+<% else %>
+<% @lessons.each do |lesson| %>
+<h1><%= link_to_if current_user && current_user.courses.include?(@course), lesson.name, [:admin, @course, lesson] %></h1>
+<% end %>
+<%= link_to t('links.back'), admin_courses_path, class:"btn btn-outline-dark" %>
+ <% end %>
+
+

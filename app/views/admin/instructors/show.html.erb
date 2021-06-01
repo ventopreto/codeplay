@@ -7,6 +7,8 @@
     <h5 class="card-title">Nome: <%= @instructor.name %></h5>
     <p class="card-text">Email: <%= @instructor.email %> </p>
     <p class="card-text">Descrição:  <%= @instructor.bio %></p>
-    <%= link_to t('links.back'), instructors_path, class:"btn btn-outline-dark"%>
+        <%= link_to t('links.edit_instructor'), edit_admin_instructor_path(@instructor), class:"btn btn-warning"%>
+        <%= link_to t('links.destroy_instructor'),admin_instructor_path, method: :delete , data: {confirm: 'Deseja excluir esse cadastro?'}, class:"btn btn-danger" %>
+        <%= link_to t('links.back'), admin_instructors_path, class:"btn btn-outline-dark"%>
   </div>
 </div>

@@ -4,23 +4,24 @@ pt-BR:
     edit_instructor: Editar Professor
     destroy_instructor: Deletar Professor
     new_instructor: Registrar Professor
-  instructors:
-    new:
-      title: Registrar Professor
-    edit:
-      title: Atualizar Professor
-    create:
-      success: Professor Registrado com sucesso
-      fail: Você deve informar todos os dados do professor
-    update:
-      success:
-      fail: Você deve informar todos os dados do professor
-    destroy: 
-      success: Professor removido com sucesso
+  admin:
+    instructors:
+      new:
+        title: Registrar Professor
+      edit:
+        title: Atualizar Professor
+      create:
+        success: Professor Registrado com sucesso
+        fail: Você deve informar todos os dados do professor
+      update:
+        success:
+        fail: Você deve informar todos os dados do professor
+      destroy: 
+        success: Professor removido com sucesso
 
 
-    
+      
 
-    
+      
 
 

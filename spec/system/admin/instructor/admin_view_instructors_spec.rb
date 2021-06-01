@@ -14,12 +14,8 @@ describe 'Admin view instructors' do
                                 email: 'luiz@gmail.com',
                                 bio: 'pkfjghikdfkgh')
 
-
+    login_as user, scope: :user
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professores'
 
     expect(page).to have_content('Julio')
@@ -35,12 +31,8 @@ describe 'Admin view instructors' do
                               email: 'luiz@gmail.com',
                               bio: 'pkfjghikdfkgh',
                               profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor.png')))
-
+    login_as user, scope: :user
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professores'
     click_on 'Luiz'
 
@@ -54,11 +46,8 @@ describe 'Admin view instructors' do
     user = User.create!(email: 'x@gmail.com',
                                     password: '123456')
 
+    login_as user, scope: :user
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professores'
 
     expect(page).to have_content('Nenhum professor disponível')
@@ -71,11 +60,8 @@ describe 'Admin view instructors' do
     Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
     bio: 'seilaksahkhashk')
 
+    login_as user, scope: :user
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professores'
     click_on 'Voltar'
 
@@ -89,16 +75,13 @@ describe 'Admin view instructors' do
     Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
     bio: 'seilaksahkhashk')
 
+    login_as user, scope: :user
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professores'
     click_on 'Julio'
     click_on 'Voltar'
 
-    expect(current_path).to eq instructors_path
+    expect(current_path).to eq admin_instructors_path
 
   end
 end

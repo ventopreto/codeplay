@@ -3,14 +3,18 @@ Rails.application.routes.draw do
   root 'home#index'
 
   namespace :admin do
-    resources :courses
+    resources :instructors
+    resources :courses do
+      resources :lessons
+    end
 
     
   end
+  resources :instructors, only: %i[show index]
   resources :courses, only: %i[show index]  do
-    resources :lessons
+    resources :lessons, only:  %i[show index] 
     post 'order', on: :member
     get 'my_courses', on: :collection
   end
-  resources :instructors
+
 end

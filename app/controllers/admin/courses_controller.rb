@@ -17,7 +17,7 @@ before_action :set_course, only: %i{show edit update destroy order}
     @instructors = Instructor.all
     @course = Course.new(course_params)
     if @course.save
-      redirect_to @course
+      redirect_to admin_course_path(@course)
     else
       flash[:fail] = t('.fail')
         render :new
@@ -32,7 +32,7 @@ before_action :set_course, only: %i{show edit update destroy order}
     @instructors = Instructor.all
     if @course.update(course_params)
       flash[:success] = t('.success')
-      redirect_to @course
+      redirect_to admin_course_path(@course)
     else
       flash[:fail] = t('.fail')
       render :edit

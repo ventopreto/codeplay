@@ -1,0 +1,13 @@
+
+<div class="card" style="width: 27rem;">
+  <div class="card-body">
+    <h5 class="card-title">Nome: <%= @lesson.name %></h5>
+    <p class="card-text">Descrição:  <%= @lesson.description %></p>
+    <p class="card-text">Duração:  <%= "#{@lesson.duration} minutos"%></p>
+    <%= link_to t('links.new_lesson'), new_admin_course_lesson_path(@course, @lesson), class:"btn btn-success" %>
+    <%= link_to t('links.edit_lesson'), edit_admin_course_lesson_path(@course, @lesson), class:"btn btn-warning" %>
+    <%= link_to t('links.destroy_lesson'), admin_course_lesson_path(@course), method: :delete , data: {confirm: 'Deseja excluir essa aula?'}, class:"btn btn-danger" %>
+    <%= link_to t('links.back'), admin_course_lessons_path, class:"btn btn-outline-dark"%>
+
+  </div>
+</div>

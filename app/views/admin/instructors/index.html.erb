@@ -9,12 +9,13 @@
             <% if instructor.profile_picture.attached? %>
               <%= image_tag instructor.profile_picture, size: "100x100", class:"mx-auto rounded-circle"%> 
             <% end %>
-          <h5> <%= link_to instructor.name, instructor %> </h5>
+          <h5> <%= link_to instructor.name, admin_instructor_path(instructor) %> </h5>
           </div>
           <% end %>
         </div>
 </div>
 <% end %>
+<%= link_to 'Registrar um Professor', new_admin_instructor_path, class:"btn btn-success btn-sm" %>
 <%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>
 
 

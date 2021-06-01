@@ -6,17 +6,14 @@
    <p class="card-text">Preço: <%= number_to_currency(@course.price) %></p>
   <p class="card-text">Professor: <%= @course.instructor.name %></p>
    <p class="card-text">Data limite de matrícula: <%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></p>
-    <%= link_to t('links.new_lesson'), new_admin_course_lesson_path(@course, @lesson), class:"btn btn-success" %>
-    <%= link_to t('links.show_lesson'), admin_course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
-    <%= link_to t('links.edit_course'), edit_admin_course_path, class:"btn btn-warning" %>
-    <%= link_to t('links.destroy_course'), admin_course_path, method: :delete, data: {confirm: 'Deseja excluir este curso?'}, class:"btn btn-danger" %>
-    <%= link_to t('links.back'), admin_courses_path, class:"btn btn-outline-dark"%>
+    <%= link_to t('links.show_lesson'), course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
+    <%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark"%>
     <% if user_signed_in?%>
     <% if current_user.courses.exclude?(@course) %>      
        <%= link_to 'Comprar', order_course_path, method: :post  %> 
     <% end %>
    <% else %>
-   <p>faça <%=link_to 'login', new_user_session_path %> Faça login para comprar esse curso</p>
+   <p>faça <%=link_to 'login', new_user_session_path, class:"btn btn-success" %> Faça login para comprar esse curso</p>
    <% end %>
   </div>
 </div>

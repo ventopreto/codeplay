@@ -5,29 +5,30 @@ pt-BR:
     destroy_lesson: Deletar Aula
     new_lesson: Registrar Aula
     show_lesson: Ver Aulas
-  lessons:
-    new:
-      title: 'Registrar uma Aula'
-    create:
-      success: 'Aula criada com sucesso'
-      fail: 'Você deve informar todos os dados da aula'
-    update:
-      success: 'Aula atualizado com sucesso'
-      fail: 'Você deve informar todos os dados da aula'
-    destroy:
-      success: 'Aula removida com sucesso'
-    edit:
-      title: 'Registrar Aula'
-    show: 
-      edit: Editar
-    activerecord:
-      models:
-        lesson: Aula
-    attributes:
-        lesson: 
-          name: Nome
-          description: Descrição
-          course: Curso
-    
+  admin:
+    lessons:
+      new:
+        title: 'Registrar uma Aula'
+      create:
+        success: 'Aula criada com sucesso'
+        fail: 'Você deve informar todos os dados da aula'
+      update:
+        success: 'Aula atualizado com sucesso'
+        fail: 'Você deve informar todos os dados da aula'
+      destroy:
+        success: 'Aula removida com sucesso'
+      edit:
+        title: 'Registrar Aula'
+      show: 
+        edit: Editar
+      activerecord:
+        models:
+          lesson: Aula
+      attributes:
+          lesson: 
+            name: Nome
+            description: Descrição
+            course: Curso
+      
 
 

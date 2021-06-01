@@ -120,9 +120,9 @@ describe 'Student view courses on homepage' do
   other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-    login_as user, scope: :user                                                      
-    visit course_lesson_path(course, lesson)
+    login_as user, scope: :user 
 
+    visit course_lesson_path(course, lesson)
    expect(current_path).to eq(course_path(course))
    expect(page).to have_link('Comprar')
     

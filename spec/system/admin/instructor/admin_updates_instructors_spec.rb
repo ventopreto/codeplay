@@ -25,7 +25,7 @@ describe 'Admin updates instructors' do
 
     click_on 'Atualizar Professor'
 
-    expect(current_path).to eq(instructor_path(Instructor.last))
+    expect(current_path).to eq(admin_instructor_path(Instructor.last))
     expect(page).to have_content('Luiz Carlos')
     expect(page).to have_content('luiz@gmail.com')
     expect(page).to have_content('lerolerolerolerolerolerolerolero')

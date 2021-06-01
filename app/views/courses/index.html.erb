@@ -1,0 +1,14 @@
+  <% if @courses.empty? %>
+ <p>'Nenhum curso disponível'</p>
+  <% else %>
+  <% @courses.each do |course| %>
+<div class="card rounded-circle border border-dark" style="width: 18rem;">
+</div>
+  <div class="card-body">
+    <h5>Nome: <%= link_to course.name, course_path(course) %> </h5>
+     <p class="card-text">Preço: <%= number_to_currency(course.price) %></p>
+    <p class="card-text">Descrição:  <%= course.description %> </p>
+  </div>
+ <% end %>
+<% end %>
+<%= link_to 'Voltar', root_path, class:"btn btn-outline-dark btn-sm"%>
