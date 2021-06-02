@@ -2,7 +2,6 @@ class Admin::LessonsController < ApplicationController
   before_action :authenticate_user!, only: %i[show]
   before_action :set_course
   before_action :set_lesson, only: %i[show edit destroy update] 
-  before_action :user_has_order, only: %i[show]
 
 def index
   @lessons = @course.lessons

@@ -1,5 +1,6 @@
 class Admin::CoursesController < ApplicationController
-before_action :set_course, only: %i{show edit update destroy order}
+before_action :authenticate_user!
+before_action :set_course, only: %i[show edit update destroy order]
 
   def index
     @courses = Course.all

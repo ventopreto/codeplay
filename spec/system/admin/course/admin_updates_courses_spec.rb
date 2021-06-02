@@ -71,6 +71,36 @@ describe 'Admin updates courses' do
   click_on 'Atualizar curso'
 
   expect(page).to have_content('não pode ficar em branco', count: 3)
+
+
+  end
+  it 'must be logged in to view edit courses through route' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
+                   enrollment_deadline: '22/12/2033')
+
+    visit edit_admin_course_path(course)
+
+    expect(current_path).to eq(new_user_session_path)
+    
   end
 
+  it 'must be logged in to view update courses through route' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
+                   enrollment_deadline: '22/12/2033')
+
+    patch admin_course_path(course)
+
+    expect(response).to redirect_to(new_user_session_path)
+    
+  end
 end

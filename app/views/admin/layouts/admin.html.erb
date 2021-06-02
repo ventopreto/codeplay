@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Codeplay</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+ <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <%= link_to 'Code Play', root_path, class:"navbar-brand" %>
+      <div class="collapse navbar-collapse">
+       <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+         <% if  user_signed_in?%>
+
+        <li class="nav-item">
+           <span class="text-light nav-link disabled"><%= current_user.email %></span>
+        </li>
+
+        <li class="nav-item active">
+         <%= link_to 'Cursos', admin_courses_path, class:"nav-link"  %> 
+        </li>
+         <li class="nav-item">
+          <%= link_to 'Professores', admin_instructors_path, class:"nav-link"  %>
+        </li>
+         <%= link_to 'Sair',  destroy_user_session_path, method: :delete, class:"nav-link" %>
+         <% else %>
+          <li class="nav-item active">
+          <%= link_to 'Registrar-me', new_user_registration_path, class:"nav-link"  %> 
+        </li>
+          <li class="nav-item active">
+          <%= link_to 'Logar', new_user_session_path, class:"nav-link" %>
+        </li>
+
+       <% end %>
+
+      </li>
+    </ul>
+  </div>
+</nav>
+  </header>
+      <% flash.each do |nome, mensagem| %>
+      <%= content_tag :div, mensagem, class: 'base-alert ' + nome %>
+    <% end %>
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+  </body>
+</html>
