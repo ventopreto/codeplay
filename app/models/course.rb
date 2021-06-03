@@ -4,7 +4,8 @@ class Course < ApplicationRecord
   belongs_to :instructor
   has_many :lessons
   has_many :orders
-  has_many :users, through: :orders
+  has_many :students, through: :orders
+
 
 
   scope :available, -> {where("enrollment_deadline >= ?", Date.current)}

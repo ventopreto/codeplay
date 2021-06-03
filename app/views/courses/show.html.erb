@@ -8,12 +8,12 @@
    <p class="card-text">Data limite de matrícula: <%= @course.enrollment_deadline.strftime("%d/%m/%Y")  %></p>
     <%= link_to t('links.show_lesson'), course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
     <%= link_to t('links.back'), courses_path, class:"btn btn-outline-dark"%>
-    <% if user_signed_in?%>
-    <% if current_user.courses.exclude?(@course) %>      
+    <% if student_signed_in?%>
+    <% if current_student.courses.exclude?(@course) %>      
        <%= link_to 'Comprar', order_course_path, method: :post  %> 
     <% end %>
    <% else %>
-   <p>faça <%=link_to 'login', new_user_session_path, class:"btn btn-success" %> Faça login para comprar esse curso</p>
+   <p>faça <%=link_to 'login', new_student_session_path, class:"btn btn-success" %> Faça login para comprar esse curso</p>
    <% end %>
   </div>
 </div>

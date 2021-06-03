@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_action :authenticate_user!, only: %i[show]
+  before_action :authenticate_student!, only: %i[show]
   before_action :set_course, only: %i[show index] 
   before_action :set_lesson, only: %i[show] 
   before_action :user_has_order, only: %i[show]
@@ -14,7 +14,7 @@ end
   private
 
   def user_has_order
-    redirect_to @lesson.course unless current_user.courses.include?(@lesson.course)
+    redirect_to @lesson.course unless current_student.courses.include?(@lesson.course)
   end
 
   def set_lesson

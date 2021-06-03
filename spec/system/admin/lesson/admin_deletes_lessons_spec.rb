@@ -32,4 +32,25 @@ describe 'admin deletes courses' do
     expect {click_on 'Deletar'}.to change {Lesson.count}.by(-1)
     expect(page).to have_content('Aula removida com sucesso')
   end
+
+  it 'cannot delete without login' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+    course = Course.create!(name: 'Python',
+                            description: 'Um curso de python',
+                            code: 'PYTHONROCKS',
+                            price: '350',
+                            instructor:instructor,
+                            enrollment_deadline: '31/08/2022')
+                 lesson = Lesson.create!(name: 'Apresentação',
+                                          description: 'Aula Inicial',
+                                          duration: 50,
+                                          course: course)
+
+    delete admin_course_lesson_path(course, lesson)
+
+    expect(response).to redirect_to(new_user_session_path)
+    
+  end
 end

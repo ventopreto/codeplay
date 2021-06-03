@@ -1,5 +1,5 @@
 class Admin::LessonsController < ApplicationController
-  before_action :authenticate_user!, only: %i[show]
+  before_action :authenticate_user!
   before_action :set_course
   before_action :set_lesson, only: %i[show edit destroy update] 
 

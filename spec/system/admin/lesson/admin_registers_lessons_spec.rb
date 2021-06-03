@@ -2,8 +2,6 @@
 
 describe 'admin registers lesson' do
   it 'successfully' do
-    user = User.create!(email: 'x@gmail.com',
-    password: '123456')
 
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
@@ -15,7 +13,7 @@ describe 'admin registers lesson' do
                         price: '0800',
                         enrollment_deadline: '22/12/2033')
                         
-          login_as user, scope: :user   
+          user_login
           visit root_path
           click_on 'Cursos'
           click_on "#{course.name}"
@@ -29,9 +27,6 @@ describe 'admin registers lesson' do
 
   it 'and update with blank fields' do
 
-    user = User.create!(email: 'x@gmail.com',
-    password: '123456')
-
     instructor = Instructor.create!(name: 'Fulano Sicrano',
     email: 'fulano@codeplay.com.br')
 
@@ -42,7 +37,7 @@ describe 'admin registers lesson' do
                               price: '0800',
                               enrollment_deadline: '22/12/2033')
 
-        login_as user, scope: :user   
+        user_login
         visit root_path
         click_on 'Cursos'
         click_on "#{course.name}"
@@ -58,10 +53,30 @@ describe 'admin registers lesson' do
   end
 
       it 'and click on back button' do
-        user = User.create!(email: 'x@gmail.com',
-        password: '123456')
 
         instructor = Instructor.create!(name: 'Fulano Sicrano',
+        email: 'fulano@codeplay.com.br')    
+    
+        course =  Course.create(name: 'Introdução a ciencias da computação com python',
+                                  description: 'Um curso sobre python',
+                                  code: 'PYTHONCODE',
+                                  instructor: instructor,
+                                  price: '0800',
+                                  enrollment_deadline: '22/12/2033')
+
+        user_login 
+        visit root_path
+        click_on 'Cursos'
+        click_on "#{course.name}"
+        click_on  'Registrar Aula'
+        click_on 'Voltar'
+
+        expect(current_path).to eq admin_course_path(course)
+      end
+
+      it 'cannot access create lesson page throgh routes without login' do
+        
+        instructor = Instructor.create!(name: 'Fulano',
         email: 'fulano@codeplay.com.br')
     
         course =  Course.create(name: 'Introdução a ciencias da computação com python',
@@ -71,13 +86,25 @@ describe 'admin registers lesson' do
                                   price: '0800',
                                   enrollment_deadline: '22/12/2033')
 
-        login_as user, scope: :user   
-        visit root_path
-        click_on 'Cursos'
-        click_on "#{course.name}"
-        click_on  'Registrar Aula'
-        click_on 'Voltar'
+        visit new_admin_course_lesson_path(course)
 
-        expect(current_path).to eq admin_course_path(course)
+        expect(current_path).to eq(new_user_session_path)
+      end
+
+      it 'cannot access create lesson form page throgh routes without login' do
+        
+        instructor = Instructor.create!(name: 'Fulano',
+        email: 'fulano@codeplay.com.br')
+    
+        course =  Course.create(name: 'Introdução a ciencias da computação com python',
+                                  description: 'Um curso sobre python',
+                                  code: 'PYTHONCODE',
+                                  instructor: instructor,
+                                  price: '0800',
+                                  enrollment_deadline: '22/12/2033')
+
+        post admin_course_lessons_path(course), params:{lesson: {name: 'Aula 1', duration: 40, description: 'Seila' }}
+
+        expect(response).to redirect_to(new_user_session_path)
       end
 end

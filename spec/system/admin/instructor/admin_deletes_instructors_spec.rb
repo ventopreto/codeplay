@@ -19,4 +19,13 @@ describe 'Admin delete instructors' do
     expect {click_on 'Deletar Professor'}.to change {Instructor.count}.by(-1)
     expect(page).to have_content('Professor removido com sucesso')
   end
+
+  it 'cannot delete instructor without login' do
+    instructor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
+    bio: 'lerolerolero')
+
+    delete admin_instructor_path(instructor)
+
+    expect(response).to redirect_to(new_user_session_path)
+  end
 end

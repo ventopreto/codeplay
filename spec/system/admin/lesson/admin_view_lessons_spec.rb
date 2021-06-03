@@ -70,4 +70,45 @@ lesson = Lesson.create!(name: 'Apresentação',
     expect(page).to have_content("#{lesson.description}")
     expect(page).to have_content("#{lesson.duration}")
   end
+
+  it 'cannot access lessons throgh routes without login' do
+    instructor = Instructor.create(name: 'João',
+    email: 'joão@gmail.com')
+  
+    course = Course.create!(name: 'React',
+    description: 'Um curso sobre React',
+    code: 'REACTCODE',
+    instructor: instructor,
+    price: '1000',
+    enrollment_deadline: '22/12/2033')
+
+lesson = Lesson.create!(name: 'Apresentação',
+      description: 'Aula iniciação do curso de react',
+      duration: 50,
+      course: course)
+
+    visit admin_course_lessons_path(course)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+  it 'cannot access lessons details throgh routes without login' do
+    instructor = Instructor.create(name: 'João',
+    email: 'joão@gmail.com')
+  
+    course = Course.create!(name: 'React',
+    description: 'Um curso sobre React',
+    code: 'REACTCODE',
+    instructor: instructor,
+    price: '1000',
+    enrollment_deadline: '22/12/2033')
+
+lesson = Lesson.create!(name: 'Apresentação',
+      description: 'Aula iniciação do curso de react',
+      duration: 50,
+      course: course)
+
+    visit admin_course_lesson_path(course, lesson)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
 end

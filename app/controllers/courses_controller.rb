@@ -9,13 +9,13 @@ before_action :set_course, only: %i{show order}
   end
 
   def order
-    current_user.orders.create(course: @course, price: @course.price)
+    current_student.orders.create(course: @course, price: @course.price)
     flash[:success] = 'Curso comprado com sucesso'
     redirect_to my_courses_courses_path
   end
 
   def my_courses
-    @orders = current_user.orders
+    @orders = current_student.orders
   end
 
 private

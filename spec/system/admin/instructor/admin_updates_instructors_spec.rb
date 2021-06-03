@@ -4,17 +4,12 @@ require 'rails_helper'
 
 describe 'Admin updates instructors' do
   it 'successfully' do
-    user = User.create!(email: 'x@gmail.com',
-                                    password: '123456')
 
     Instructor.create!(name: 'João', email: 'joao@gmail.com',
                    bio: 'lerolerolero')
 
+    user_login
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professor'
     click_on 'João'
     click_on 'Editar'
@@ -33,17 +28,12 @@ describe 'Admin updates instructors' do
   end
 
   it 'and update with blank fields' do
-    user = User.create!(email: 'x@gmail.com',
-    password: '123456')
 
     professor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
     bio: 'lerolerolero')
 
+    user_login
     visit root_path
-    click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
-    fill_in 'Senha', with: '123456'
-    click_on 'Entrar'
     click_on 'Professor'
     click_on "#{professor.name}"
     click_on 'Editar'
@@ -52,5 +42,28 @@ describe 'Admin updates instructors' do
     click_on 'Atualizar Professor'
 
     expect(page).to have_content("Você deve informar todos os dados do professor")
+  end
+
+  it 'must be logged in to visit instructor edit page throgh routes' do
+    instructor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
+    bio: 'lerolerolero')
+
+    visit edit_admin_instructor_path(instructor)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  xit 'cannot access edit form without login' do
+
+    instructor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
+    bio: 'lerolerolero', profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/files/instructor.png')))
+ 
+     professor = Instructor.create!(name: 'Luiz',
+    email: 'luiz@gmail.com',
+    bio: 'pkfjghikdfkgh', profile_picture: 1)
+
+
+    patch admin_instructor_path(professor)
+    expect(current_path).to redirect_to(new_user_session_path)
   end
 end

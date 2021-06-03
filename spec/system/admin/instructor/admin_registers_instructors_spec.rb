@@ -46,4 +46,12 @@ describe 'Admin registers instructors' do
 
     expect(page).to have_content("Você deve informar todos os dados do professor")
   end
+
+  it 'must be logged visit instructor registration page through route' do
+
+    visit new_admin_instructor_path
+
+    expect(current_path).to eq(new_user_session_path)
+    
+  end
 end

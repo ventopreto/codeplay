@@ -30,7 +30,7 @@ describe 'Admin view instructors' do
   Instructor.create!(name: 'Luiz',
                               email: 'luiz@gmail.com',
                               bio: 'pkfjghikdfkgh',
-                              profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/instructor.png')))
+                              profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/files/instructor.png')))
     login_as user, scope: :user
     visit root_path
     click_on 'Professores'
@@ -83,5 +83,20 @@ describe 'Admin view instructors' do
 
     expect(current_path).to eq admin_instructors_path
 
+  end
+
+  it 'must be logged in to view instructor details through route' do
+   instructor = Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
+    bio: 'seilaksahkhashk')
+
+    visit admin_instructor_path(instructor)
+
+    expect(current_path).to eq(new_user_session_path)
+  end
+
+  it 'must be logged in to view instructors through route' do
+    visit admin_instructors_path
+
+    expect(current_path).to eq(new_user_session_path)
   end
 end

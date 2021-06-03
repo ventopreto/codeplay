@@ -37,4 +37,24 @@ describe 'admin updates lessons' do
     expect(page).to have_content('Primeira Aula do Curso')
     expect(page).to have_content('40 minutos')
   end
+
+  it 'cannot edit lesson throgh routes without login' do
+    instructor = Instructor.create(name: 'Fabio kon',
+    email: 'fabio@gmail.com')
+    course = Course.create(name: 'Python 1',
+    code: 'PYTHONCODE',
+    price: '0800',
+    instructor: instructor,
+    enrollment_deadline: '25/05/2021')
+    lesson = Lesson.create(name: 'aula 1',
+    description: 'primeira aula do curso',
+    duration: 50,
+    course:course)
+
+
+    visit edit_admin_course_lesson_path(course, lesson)
+
+    expect(current_path).to eq(new_user_session_path)
+
+  end
 end
