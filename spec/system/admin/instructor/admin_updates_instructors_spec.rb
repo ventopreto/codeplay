@@ -53,17 +53,12 @@ describe 'Admin updates instructors' do
     expect(current_path).to eq(new_user_session_path)
   end
 
-  xit 'cannot access edit form without login' do
+  xit 'must be logged in to update instructor through route' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
 
-    instructor = Instructor.create!(name: 'João', email: 'joao@gmail.com',
-    bio: 'lerolerolero', profile_picture: fixture_file_upload(Rails.root.join('spec/fixtures/files/instructor.png')))
- 
-     professor = Instructor.create!(name: 'Luiz',
-    email: 'luiz@gmail.com',
-    bio: 'pkfjghikdfkgh', profile_picture: 1)
+    patch admin_instructor_path(instructor)
 
-
-    patch admin_instructor_path(professor)
-    expect(current_path).to redirect_to(new_user_session_path)
+    expect(response).to redirect_to(new_user_session_path)
   end
 end

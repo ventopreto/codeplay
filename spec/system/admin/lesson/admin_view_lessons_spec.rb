@@ -57,7 +57,7 @@ lesson = Lesson.create!(name: 'Apresentação',
                     description: 'Aula iniciação do curso de react',
                     duration: 50,
                     course: course)
-                    Order.create!(user: user, course: course)
+
 
     login_as user, scope: :user
     visit root_path

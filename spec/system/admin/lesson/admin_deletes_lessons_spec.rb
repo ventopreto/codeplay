@@ -21,7 +21,6 @@ describe 'admin deletes courses' do
                                           description: 'Aula Inicial',
                                           duration: 50,
                                           course: course)
-                              Order.create!(user: user, course: course)
                               
     login_as user, scope: :user   
     visit root_path

@@ -1,5 +1,4 @@
-class Admin::InstructorsController < ApplicationController
-  before_action :authenticate_user!, only: %i[new create index show edit destroy]
+class Admin::InstructorsController < Admin::AdminController
   def index
     @instructors = Instructor.all
   end

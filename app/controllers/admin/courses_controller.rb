@@ -1,5 +1,4 @@
-class Admin::CoursesController < ApplicationController
-before_action :authenticate_user!
+class Admin::CoursesController < Admin::AdminController
 before_action :set_course, only: %i[show edit update destroy order]
 
   def index

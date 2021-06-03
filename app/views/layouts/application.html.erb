@@ -18,26 +18,26 @@
       <div class="collapse navbar-collapse">
        <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-         <% if  user_signed_in?%>
+         <% if  student_signed_in?%>
 
         <li class="nav-item">
-           <span class="text-light nav-link disabled"><%= current_user.email %></span>
+           <span class="text-light nav-link disabled"><%= current_student.email %></span>
         </li>
 
         <li class="nav-item active">
-         <%= link_to 'Cursos', admin_courses_path, class:"nav-link"  %> 
+         <%= link_to 'Cursos', courses_path, class:"nav-link"  %> 
         </li>
 
          <li class="nav-item">
-          <%= link_to 'Professores', admin_instructors_path, class:"nav-link"  %>
+          <%= link_to 'Professores', instructors_path, class:"nav-link"  %>
         </li>
-         <%= link_to 'Sair',  destroy_user_session_path, method: :delete, class:"nav-link" %>
+         <%= link_to 'Sair',  destroy_student_session_path, method: :delete, class:"nav-link" %>
          <% else %>
           <li class="nav-item active">
-          <%= link_to 'Registrar-me', new_user_registration_path, class:"nav-link"  %> 
+          <%= link_to 'Registrar-me', new_student_registration_path, class:"nav-link"  %> 
         </li>
           <li class="nav-item active">
-          <%= link_to 'Logar', new_user_session_path, class:"nav-link" %>
+          <%= link_to 'Logar', new_student_session_path, class:"nav-link" %>
         </li>
 
        <% end %>

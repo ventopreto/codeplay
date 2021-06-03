@@ -21,13 +21,13 @@ describe 'Student view courses on homepage' do
     expect(page).to_not have_content('R$ 12,00')
   end
   it 'and view enrollment link' do
-    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-    login_as user, scope: :user                                                      
+    login_as student, scope: :student                                                      
     visit root_path
     click_on 'Ruby'
 
@@ -36,7 +36,7 @@ describe 'Student view courses on homepage' do
 
   it 'and does not view orders if deadline is over' do
     #curso com data limite ultrapassada, mas com usuario logado, não deve exibir o link
-      user = User.create!(email: 'jane@test.com.br', password: '123456')
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
       instructor = Instructor.create!(name: 'Fulano Sicrano',
                                                       email: 'fulano@codeplay.com.br')
       available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
@@ -45,7 +45,7 @@ describe 'Student view courses on homepage' do
     unavailable_course = Course.create!(name: 'HTML', description: 'Um curso de html',
                                                               code: 'HTMLBASIC', price: 12,
                                                               enrollment_deadline: 2.day.ago, instructor: instructor)
-      login_as user, scope: :user                                                      
+      login_as student, scope: :student                                                      
       visit root_path
 
       expect(page).to_not have_content('HTML')
@@ -62,21 +62,23 @@ describe 'Student view courses on homepage' do
       visit root_path
       click_on 'Ruby'
       expect(page).to have_content 'Faça login para comprar esse curso'
-      expect(page).to have_link 'login', href: new_user_session_path
+      expect(page).to have_link 'login', href: new_student_session_path
   end
 
   it ' and buy a course' do
-    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                  Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
   other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-    login_as user, scope: :user                                                      
-    visit root_path
+
+    login_as student, scope: :student                                                      
+    visit root_path                                                
     click_on 'Ruby'
     click_on 'Comprar'
 
@@ -89,18 +91,18 @@ describe 'Student view courses on homepage' do
     expect(page).to_not have_content('R$ 20,00')
   end
   it ' and cannot buy a course twice' do
-    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-                                  Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
+ lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
   other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-                            Order.create!(user: user, course: available_course)
-    login_as user, scope: :user                                                      
+                            Order.create!(student: student, course: available_course)
+    login_as student, scope: :student                                                      
     visit root_path
     click_on 'Ruby'
     click_on 'Ver Aulas'
@@ -110,34 +112,36 @@ describe 'Student view courses on homepage' do
 
   end
   it 'and cannot view lesson without buy' do
-    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
     instructor = Instructor.create!(name: 'Fulano Sicrano',
                                                     email: 'fulano@codeplay.com.br')
-    course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
+    available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
                                                             enrollment_deadline: 1.month.from_now, instructor: instructor)
-                           lesson =  Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: course, duration: 40)
-  other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
-                                                            code: 'ELIXIRBASIC', price: 20,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
-    login_as user, scope: :user 
+ lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
 
-    visit course_lesson_path(course, lesson)
-   expect(current_path).to eq(course_path(course))
+
+    login_as student, scope: :student                                                      
+
+    visit course_lesson_path(available_course, lesson)
+   expect(current_path).to eq(course_path(available_course))
    expect(page).to have_link('Comprar')
     
   end
   it 'and cannot view lesson without loggin' do
-  user = User.create!(email: 'jane@test.com.br', password: '123456')
-  instructor = Instructor.create!(name: 'Fulano Sicrano',
-                                                  email: 'fulano@codeplay.com.br')
-  course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
-                                                          code: 'RUBYBASIC', price: 10,
-                                                          enrollment_deadline: 1.month.from_now, instructor: instructor)
-                           lesson =  Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: course, duration: 40)
-other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
-                                                          code: 'ELIXIRBASIC', price: 20,
-                                                          enrollment_deadline: 1.month.from_now, instructor: instructor)
+    student = Student.create!(email: 'jane@test.com.br', password: '123456')
+
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                                    email: 'fulano@codeplay.com.br')
+    available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
+                                                            code: 'RUBYBASIC', price: 10,
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                     lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
+  course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
+                                                            code: 'ELIXIRBASIC', price: 20,
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                            Order.create!(student: student, course: available_course)
+                                               
                                                 
   visit course_lesson_path(course, lesson)
   expect(page).to_not have_content('Monkey Patch')

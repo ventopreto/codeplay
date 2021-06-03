@@ -2,15 +2,15 @@
   pt-BR:
     activerecord:
       models:
-        user:
+        student:
           one: Usuário(a)
           other: Usuários(as)
       attributes:
-        user:
+        student:
           password: Senha
           password_confirmation: Confirmação de senha
           remember_me: Lembrar-me
-    users:
+    students:
         registrations:
             new:
                 Sign up: Registrar
@@ -26,12 +26,11 @@
           new:
             title: Esqueceu sua senha?
             submit: Me envie instruções de redefinição senha
-    students:
         shared:
-            links:
-              Forgot your password?: Esqueci minha senha
-              Sign up: Registrar-se
-              Log in: Logar
+          links:
+            Forgot your password?: Esqueci minha senha
+            Sign up: Registrar-se
+            Log in: Logar
 
 
 

@@ -18,7 +18,7 @@ describe 'admin updates lessons' do
                                         description: 'primeira aula do curso',
                                         duration: 50,
                                         course:course)
-                                        Order.create!(user: user, course: course)
+
                     
 
     login_as user, scope: :user   
@@ -56,5 +56,24 @@ describe 'admin updates lessons' do
 
     expect(current_path).to eq(new_user_session_path)
 
+  end
+
+  it 'must be logged in to update lessons through route' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+    course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                   code: 'RUBYBASIC', price: 10,
+                   instructor: instructor,
+                   enrollment_deadline: '22/12/2033')
+                   
+    lesson = Lesson.create(name: 'aula 1',
+    description: 'primeira aula do curso',
+    duration: 50,
+    course:course)
+
+    patch admin_course_lesson_path(course, lesson)
+
+    expect(response).to redirect_to(new_user_session_path)
   end
 end
