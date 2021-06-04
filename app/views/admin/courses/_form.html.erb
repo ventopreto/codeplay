@@ -41,6 +41,13 @@
       <%= f.label :enrollment_deadline, "Data limite de matrícula", class:"form-label" %>
       <%= f.date_field :enrollment_deadline, class:"form-control"  %>
   </div>
+
+      <div class="col-md-6">
+      <%= f.check_box :status %>
+      <%= f.label :status, "Publicar?", class:"form-label" %>
+
+  </div>
+
 </div>
   <%= f.submit button_text, class:"btn btn-outline-dark btn-sm"%>
   <%= link_to t('links.back'), root_path, class:"btn btn-outline-dark btn-sm" %>

@@ -63,7 +63,9 @@ def set_course
 end
 
 def course_params
-  params.require(:course).permit(:name,:description,:code,:price, :instructor_id,:enrollment_deadline)
+  cp = params.require(:course).permit(:name,:description,:code,:price, :instructor_id,:enrollment_deadline)
+  cp[:status] = params[:course][:status].to_i
+    return cp
 end
 
 end

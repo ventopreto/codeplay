@@ -6,7 +6,7 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
 
   unavailable_course = Course.create!(name: 'HTML', description: 'Um curso de html',
                                                           code: 'HTMLBASIC', price: 12,
@@ -26,7 +26,7 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
     login_as student, scope: :student                                                      
     visit root_path
     click_on 'Ruby'
@@ -44,7 +44,7 @@ describe 'Student view courses on homepage' do
                                                               enrollment_deadline: 1.month.from_now, instructor: instructor)
     unavailable_course = Course.create!(name: 'HTML', description: 'Um curso de html',
                                                               code: 'HTMLBASIC', price: 12,
-                                                              enrollment_deadline: 2.day.ago, instructor: instructor)
+                                                              enrollment_deadline: 2.day.ago, instructor: instructor, status:1)
       login_as student, scope: :student                                                      
       visit root_path
 
@@ -58,7 +58,7 @@ describe 'Student view courses on homepage' do
                                                       email: 'fulano@codeplay.com.br')
       available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                               code: 'RUBYBASIC', price: 10,
-                                                              enrollment_deadline: 1.month.from_now, instructor: instructor)                                              
+                                                              enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)                                              
       visit root_path
       click_on 'Ruby'
       expect(page).to have_content 'Faça login para comprar esse curso'
@@ -71,11 +71,11 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
                                   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
   other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
 
     login_as student, scope: :student                                                      
     visit root_path                                                
@@ -96,7 +96,7 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
  lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
   other_course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,
@@ -117,7 +117,7 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
  lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
 
 
@@ -135,7 +135,7 @@ describe 'Student view courses on homepage' do
                                                     email: 'fulano@codeplay.com.br')
     available_course = Course.create!(name: 'Ruby', description: 'Um curso de ruby',
                                                             code: 'RUBYBASIC', price: 10,
-                                                            enrollment_deadline: 1.month.from_now, instructor: instructor)
+                                                            enrollment_deadline: 1.month.from_now, instructor: instructor, status:1)
                      lesson =   Lesson.create!(name: 'Monkey Patch', description: 'Blablabla', course: available_course, duration: 40)
   course = Course.create!(name: 'Elixir', description: 'Um curso de elixir',
                                                             code: 'ELIXIRBASIC', price: 20,

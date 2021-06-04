@@ -9,5 +9,7 @@ class Course < ApplicationRecord
 
 
   scope :available, -> {where("enrollment_deadline >= ?", Date.current)}
+  scope :not_draft, -> {where(status:1)}
+  enum status: { Rascunho: 0, Publicado: 1}
 end
 

@@ -2,7 +2,7 @@ class CoursesController < ApplicationController
 before_action :set_course, only: %i{show order}
 
   def index
-    @courses = Course.all
+    @courses = Course.available.not_draft
   end
 
   def show

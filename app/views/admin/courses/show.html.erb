@@ -6,6 +6,7 @@
    <p class="card-text">Preço: <%= number_to_currency(@course.price) %></p>
   <p class="card-text">Professor: <%= @course.instructor.name %></p>
    <p class="card-text">Data limite de matrícula: <%= @course.enrollment_deadline.strftime("%d/%m/%Y") if @course.enrollment_deadline  %></p>
+   <p class="card-text">Status: <%= @course.status %></p>
     <%= link_to t('links.new_lesson'), new_admin_course_lesson_path(@course, @lesson), class:"btn btn-success" %>
     <%= link_to t('links.show_lesson'), admin_course_lessons_path(@course, @lesson), class:"btn btn-dark"  %>
     <%= link_to t('links.edit_course'), edit_admin_course_path, class:"btn btn-warning" %>

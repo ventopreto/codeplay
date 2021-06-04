@@ -85,4 +85,54 @@ describe 'Admin registers courses' do
     expect(current_path).to eq(new_user_session_path)
     
   end
+
+  it 'a draft course' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+
+    user_login
+    visit root_path
+    click_on 'Cursos'
+    click_on 'Registrar um Curso'
+    fill_in 'Nome', with: 'Ruby'
+    fill_in 'Descrição', with: 'Um curso sobre ruby'
+    fill_in 'Código', with: 'RUBYBASIC'
+    fill_in 'Preço', with: '30'
+    fill_in 'Data limite de matrícula', with: '22/12/2033'
+    select "Fulano Sicrano", from: "Professor"
+    click_on 'Criar curso'
+
+    expect(page).to have_content('Ruby')
+    expect(page).to have_content('Um curso sobre ruby')
+    expect(page).to have_content('RUBYBASIC')
+    expect(page).to have_content('R$ 30,00')
+    expect(page).to have_content('Rascunho')
+  end
+
+  it 'a undraft course' do
+    instructor = Instructor.create!(name: 'Fulano Sicrano',
+    email: 'fulano@codeplay.com.br')
+
+
+    user_login
+    visit root_path
+    click_on 'Cursos'
+    click_on 'Registrar um Curso'
+    fill_in 'Nome', with: 'Ruby'
+    fill_in 'Descrição', with: 'Um curso sobre ruby'
+    fill_in 'Código', with: 'RUBYBASIC'
+    fill_in 'Preço', with: '30'
+    fill_in 'Data limite de matrícula', with: '22/12/2033'
+    select "Fulano Sicrano", from: "Professor"
+    check("Publicar?")
+    click_on 'Criar curso'
+
+    expect(page).to have_content('Ruby')
+    expect(page).to have_content('Um curso sobre ruby')
+    expect(page).to have_content('RUBYBASIC')
+    expect(page).to have_content('R$ 30,00')
+    expect(page).to_not have_content('Rascunho')
+    expect(page).to have_content('Publicado')
+  end
 end
