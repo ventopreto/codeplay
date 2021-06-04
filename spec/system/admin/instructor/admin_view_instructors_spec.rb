@@ -54,18 +54,17 @@ describe 'Admin view instructors' do
   end
 
   it 'and return to home page' do
-    user = User.create!(email: 'x@gmail.com',
-                                    password: '123456')
+
 
     Instructor.create!(name: 'Julio', email: 'julio@gmail.com',
     bio: 'seilaksahkhashk')
 
-    login_as user, scope: :user
+    user_login
     visit root_path
     click_on 'Professores'
     click_on 'Voltar'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq admin_courses_path
   end
 
   it 'and return to index page' do

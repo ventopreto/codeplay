@@ -42,12 +42,12 @@ describe 'Visitor creates account' do
    end
 
    it 'with email not unique' do
-    User.create!(email: 'x@gmail.com',
+    Student.create!(email: 'g@gmail.com',
                         password: '123456')
 
     visit root_path
     click_on 'Registrar-me'
-    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Email', with: 'g@gmail.com'
     fill_in 'Senha', with: '123456'
     fill_in 'Confirmação de senha', with: '123456'
     click_on 'Criar conta'
@@ -58,15 +58,15 @@ describe 'Visitor creates account' do
 
    context 'sign in' do
     it 'with email and password' do
-    User.create!(email: 'x@gmail.com', password: '123456')
+    Student.create!(email: 'g@gmail.com', password: '123456')
     visit root_path
     click_on 'Logar'
-    fill_in 'Email', with: 'x@gmail.com'
+    fill_in 'Email', with: 'g@gmail.com'
     fill_in 'Senha', with: '123456'
     click_on 'Entrar'
 
     expect(page).to have_text('Login efetuado com sucesso')
-    expect(page).to have_text('x@gmail.com')
+    expect(page).to have_text('g@gmail.com')
     expect(current_path).to eq(root_path)
     expect(page).to_not have_link('Registrar-me')
     expect(page).to_not have_link('Entrar')
@@ -75,15 +75,14 @@ describe 'Visitor creates account' do
 
    context 'logout' do
     it 'successfully' do
-      user = User.create!(email: 'x@gmail.com',
-                                      password: '123456')
+
       
-      login_as user, scope: :user
+      student_login
       visit root_path
       click_on 'Sair'
 
       expect(page).to have_text('Saiu com sucesso')
-      expect(page).to_not have_text('x@gmail.com')
+      expect(page).to_not have_text('g@gmail.com')
       expect(current_path).to eq(root_path)
       expect(page).to have_link('Registrar-me')
       expect(page).to have_link('Logar')

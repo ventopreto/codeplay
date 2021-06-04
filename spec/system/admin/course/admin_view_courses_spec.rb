@@ -81,7 +81,7 @@ describe 'Admin view courses' do
     click_on 'Cursos'
     click_on 'Voltar'
 
-    expect(current_path).to eq root_path
+    expect(current_path).to eq admin_courses_path
   end
 
   it 'and return to promotions page' do
@@ -101,7 +101,7 @@ describe 'Admin view courses' do
     click_on 'Ruby'
     click_on 'Voltar'
 
-    expect(current_path).to eq(courses_path)
+    expect(current_path).to eq(admin_courses_path)
   end
 
   it 'must be logged in to view courses button' do

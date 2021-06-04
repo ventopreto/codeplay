@@ -13,9 +13,8 @@
     students:
         registrations:
             new:
-                Sign up: Registrar
+                Sign up: Criar conta
                 title: Registro
-                submit: Criar conta
         sessions:
             new:
                 Log in: Entrar
